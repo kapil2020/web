@@ -118,6 +118,51 @@
       #backToTopBtn.visible {
         @apply opacity-100 translate-y-0;
       }
+
+      /* --- NEW: Modal Styles --- */
+      .modal {
+        @apply fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ease-out opacity-0 translate-y-4 pointer-events-none;
+      }
+      .modal.show {
+        @apply opacity-100 translate-y-0 pointer-events-auto;
+      }
+      .modal-overlay {
+        @apply absolute inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm;
+      }
+      .modal-content {
+        @apply relative z-10 w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col;
+      }
+      .modal-header {
+        @apply p-6 border-b border-slate-200 dark:border-slate-800;
+      }
+      .modal-body {
+        @apply p-6 overflow-y-auto;
+      }
+      .modal-close-btn {
+        @apply absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors;
+      }
+
+      /* --- NEW: Filter Button Styles --- */
+      .filter-btn {
+        @apply px-4 py-1.5 rounded-full text-sm font-medium transition-colors;
+      }
+      .filter-btn.active {
+        @apply bg-cyan-600 text-white;
+      }
+      .filter-btn:not(.active) {
+        @apply text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800;
+      }
+      
+      /* --- NEW: Publication/Card transition styles --- */
+      .publication-item {
+        @apply transition-all duration-300 ease-out;
+      }
+      .publication-item.hidden {
+        @apply opacity-0 max-h-0 p-0 m-0 border-0 overflow-hidden;
+      }
+      .card-clickable {
+        @apply cursor-pointer hover:shadow-xl dark:hover:shadow-cyan-900/30;
+      }
     }
   </style>
 
@@ -245,41 +290,73 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="py-24 sm:py-32 bg-slate-50 dark:bg-slate-900/40 scroll-mt-16">
+    <!-- NEW: Professional Experience -->
+    <section id="experience" class="py-24 sm:py-32 scroll-mt-16">
       <div class="container reveal">
-        <h2 class="text-center mb-12">About Me</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="md:col-span-2 space-y-4">
-            <p class="text-lg">
-              I am a researcher in travel behaviour, air-quality exposure, and sustainable urban mobility, currently completing my PhD at the <strong>Indian Institute of Technology Kharagpur</strong> under the guidance of <strong>Prof. Arkopal Kishore Goswami</strong>. My interdisciplinary work bridges transportation engineering, environmental analytics, and behavioural modelling to advance equitable and cleaner urban mobility systems.
-            </p>
-            <p>
-              My goal is to integrate data-driven decision frameworks with human-centred design to address the twin challenges of urban pollution and mobility inequity. To this end, I have developed tools and models—ranging from latent class choice models and machine learning frameworks to AI-enabled routing applications—that quantify behavioural responses to air quality, travel information, and infrastructure design.
-            </p>
-            <p>
-              In my doctoral research, I led the development of <strong>DRUM (Dynamic Route Planning for Urban Mobility)</strong>, a web-based routing tool that recommends pollution- and energy-optimized travel paths in real time. I also proposed the <strong>Perceived Walkability Score (PWS)</strong> framework, integrating computer vision and stated preference modelling to map urban walkability at neighbourhood scale. These contributions have been featured in <em>The Hindu</em> and recognized through multiple academic awards and grants, including a research exchange fellowship at the <strong>University of Leeds</strong>.
-            </p>
-            <p>
-              Prior to my PhD, I completed an <strong>M.Tech in Transportation Engineering</strong> from <strong>IIT Roorkee</strong> and a <strong>B.Tech in Civil Engineering</strong> from <strong>Rajasthan Technical University</strong>. I also gained professional experience at the <strong>World Resources Institute (WRI) India</strong>, studying in-vehicle exposure and commuter health risks across Indian cities.
-            </p>
-            <p>
-              I serve as a peer reviewer for leading journals including <em>Transport Policy</em>, <em>Transportation Research: Part A</em>, <em>TRR</em>, and <em>RTBM</em>, and am an active member of ASCE T&amp;DI, Transportation Research Group of India, and WCTR Society. My long-term vision is to design intelligent, sustainable, and equitable mobility systems by combining behavioural insights, AI, and policy innovation.
-            </p>
-          </div>
-          
-          <aside class="md:col-span-1 reveal" style="transition-delay: 200ms;">
-            <div class="card p-6">
-              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">At a glance</h3>
-              <ul class="space-y-2 text-sm styled-list">
-                <li><strong>Affiliation:</strong> MUST Lab, IIT Kharagpur</li>
-                <li><strong>Interests:</strong> Mode choice, AQI exposure, equity</li>
-                <li><strong>Reviewing:</strong> TR-A, Transport Policy, TRR, RTBM</li>
-                <li><strong>Memberships:</strong> ASCE T&amp;DI, TRG, WCTR</li>
-              </ul>
-              <a class="btn btn-primary btn-small mt-6 w-full" href="#contact">Contact Me</a>
+        <h2 class="text-center mb-12">Professional Experience</h2>
+        <div class="max-w-3xl mx-auto">
+          <div class="card flex-col sm:flex-row gap-6">
+            <div class="flex-shrink-0">
+              <img class="w-24 h-24 rounded-lg object-contain" src="https://placehold.co/100x100/f0f9ff/0c4a6e?text=WRI" alt="WRI India Logo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333333?text=Logo';">
             </div>
-          </aside>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-1">Researcher, E-Mobility</h3>
+              <p class="font-medium text-cyan-600 dark:text-cyan-400">World Resources Institute (WRI) India</p>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-3">Nov 2021 – Mar 2022</p>
+              <p class="text-sm">Studied in-vehicle air pollution exposure and health risks for commuters across various Indian cities, comparing inhaled doses with ambient conditions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: Toolkit Section -->
+    <section id="toolkit" class="py-24 sm:py-32 bg-slate-50 dark:bg-slate-900/40 scroll-mt-16">
+      <div class="container reveal">
+        <h2 class="text-center mb-12">My Toolkit</h2>
+        <div class="max-w-4xl mx-auto">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            
+            <div class="reveal" style="transition-delay: 0ms;">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-3">Programming</h3>
+              <div class="flex flex-wrap justify-center gap-2">
+                <span class="chip">Python</span>
+                <span class="chip">R</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">SQL</span>
+              </div>
+            </div>
+            
+            <div class="reveal" style="transition-delay: 100ms;">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-3">Web & Database</h3>
+              <div class="flex flex-wrap justify-center gap-2">
+                <span class="chip">ReactJS</span>
+                <span class="chip">Streamlit</span>
+                <span class="chip">MySQL</span>
+                <span class="chip">MongoDB</span>
+              </div>
+            </div>
+
+            <div class="reveal" style="transition-delay: 200ms;">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-3">Data Analysis</h3>
+              <div class="flex flex-wrap justify-center gap-2">
+                <span class="chip">NLOGIT</span>
+                <span class="chip">SPSS</span>
+                <span class="chip">Tableau</span>
+                <span class="chip">MiniTab</span>
+              </div>
+            </div>
+
+            <div class="reveal" style="transition-delay: 300ms;">
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-3">Spatial & Docs</h3>
+              <div class="flex flex-wrap justify-center gap-2">
+                <span class="chip">QGIS</span>
+                <span class="chip">LaTeX</span>
+                <span class="chip">JabRef</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
@@ -328,80 +405,208 @@
     <!-- SELECTED PUBLICATIONS -->
     <section id="publications" class="py-24 sm:py-32 bg-slate-50 dark:bg-slate-900/40 scroll-mt-16">
       <div class="container reveal">
-        <h2 class="text-center mb-12">Selected Publications</h2>
-        
-        <div class="max-w-3xl mx-auto space-y-8">
-          
-          <article class="flex gap-4 group reveal">
-            <div class="flex-shrink-0 pt-1">
-              <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                Dynamic route planning for urban green mobility: Development of a web application offering sustainable route options to commuters
-                <span class="inline-block opacity-0 group-hover:opacity-100 transition-all duration-200 ease-out transform -translate-x-2 group-hover:translate-x-0" aria-hidden="true">→</span>
-              </h3>
-              <p class="text-sm text-slate-500 dark:text-slate-400">Transportation Research Record, 2025 · Meena KK, Singh AK, Goswami AK</p>
-            </div>
-          </article>
+        <h2 class="text-center mb-12">Publications & Impact</h2>
 
-          <article class="flex gap-4 group reveal">
-            <div class="flex-shrink-0 pt-1">
-              <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                Modeling bicycle choice behavior and its potential health impact: Case of first/last‑mile access to suburban rail
-                <span class="inline-block opacity-0 group-hover:opacity-100 transition-all duration-200 ease-out transform -translate-x-2 group-hover:translate-x-0" aria-hidden="true">→</span>
-              </h3>
-              <p class="text-sm text-slate-500 dark:text-slate-400">International Journal of Sustainable Transportation, 2025 · Manoj BS, Meena KK, Panchal H, Sharma G, Goswami AK</p>
-            </div>
-          </article>
-          
-          <article class="flex gap-4 group reveal">
-            <div class="flex-shrink-0 pt-1">
-              <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                A prioritization framework to identify key attributes of transit-oriented development (TOD) using multi-criteria decision-making (MCDM) approach: an Indian context
-                <span class="inline-block opacity-0 group-hover:opacity-100 transition-all duration-200 ease-out transform -translate-x-2 group-hover:translate-x-0" aria-hidden="true">→</span>
-              </h3>
-              <p class="text-sm text-slate-500 dark:text-slate-400">International Journal of Sustainable Transportation, 2025 · Manoj BS, Meena KK, Goswami AK</p>
-            </div>
-          </article>
-
-          <article class="flex gap-4 group reveal">
-            <div class="flex-shrink-0 pt-1">
-              <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                A review of air pollution exposure impacts on travel behaviour and way forward
-                <span class="inline-block opacity-0 group-hover:opacity-100 transition-all duration-200 ease-out transform -translate-x-2 group-hover:translate-x-0" aria-hidden="true">→</span>
-              </h3>
-              <p class="text-sm text-slate-500 dark:text-slate-400">Transport Policy, 2024 · Meena KK, Goswami AK</p>
-            </div>
-          </article>
-          
-          <article class="flex gap-4 group reveal">
-            <div class="flex-shrink-0 pt-1">
-              <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                A machine learning approach for unraveling the influence of air quality awareness on travel behavior
-                <span class="inline-block opacity-0 group-hover:opacity-100 transition-all duration-200 ease-out transform -translate-x-2 group-hover:translate-x-0" aria-hidden="true">→</span>
-              </h3>
-              <p class="text-sm text-slate-500 dark:text-slate-400">Decision Analytics Journal, 2024 · Meena KK, Bairwa D, Agarwal A</p>
-            </div>
-          </article>
+        <!-- NEW: Impact Metrics -->
+        <div class="max-w-4xl mx-auto mb-16" id="stats-section">
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white text-center mb-6">By the Numbers</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" rel="noopener" class="card text-center p-6 !shadow-md hover:!shadow-xl hover:-translate-y-2">
+              <div class="text-4xl font-bold text-cyan-600 dark:text-cyan-400" data-count="115">0+</div>
+              <div class="text-sm font-semibold mt-1">Total Citations</div>
+            </a>
+            <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" rel="noopener" class="card text-center p-6 !shadow-md hover:!shadow-xl hover:-translate-y-2">
+              <div class="text-4xl font-bold text-cyan-600 dark:text-cyan-400" data-count="6">0</div>
+              <div class="text-sm font-semibold mt-1">h-index</div>
+            </a>
+            <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" rel="noopener" class="card text-center p-6 !shadow-md hover:!shadow-xl hover:-translate-y-2">
+              <div class="text-4xl font-bold text-cyan-600 dark:text-cyan-400" data-count="5">0</div>
+              <div class="text-sm font-semibold mt-1">i10-index</div>
+            </a>
+          </div>
         </div>
 
-        <p class="text-center mt-12 text-sm reveal">
-          Full list on <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" rel="noopener" class="font-medium text-cyan-600 dark:text-cyan-400 hover:underline">Google Scholar</a> ·
-          Media: <a href="https://www.thehindu.com/sci-tech/energy-and-environment/iit-kgp-app-helps-commuters-pick-greener-routes-on-the-road/article69644558.ece" target="_blank" rel="noopener" class="font-medium text-cyan-600 dark:text-cyan-400 hover:underline">The Hindu feature</a>
-        </p>
+        <!-- NEW: Filter Buttons -->
+        <div class="flex justify-center flex-wrap gap-2 mb-12" id="publication-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="journal">Journal Articles</button>
+          <button class="filter-btn" data-filter="conference">Conference</button>
+          <button class="filter-btn" data-filter="media">Media</button>
+        </div>
+        
+        <div class="max-w-3xl mx-auto" id="publication-list">
+          <!-- NEW: Journal Articles -->
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6">Journal Articles</h3>
+          <div class="space-y-8 mb-12">
+            <article class="publication-item flex gap-4 group reveal" data-category="journal">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1177/03611981241253289" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    Dynamic route planning for urban green mobility: Development of a web application offering sustainable route options to commuters
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Transportation Research Record, 2025 · Meena KK, Singh AK, Goswami AK</p>
+              </div>
+            </article>
+
+            <article class="publication-item flex gap-4 group reveal" data-category="journal">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1080/15568318.2024.2415170" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    Modeling bicycle choice behavior and its potential health impact: Case of first/last‑mile access to suburban rail
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">International Journal of Sustainable Transportation, 2025 · Manoj BS, Meena KK, Panchal H, Sharma G, Goswami AK</p>
+              </div>
+            </article>
+            
+            <article class="publication-item flex gap-4 group reveal" data-category="journal">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1080/15568318.2024.2372551" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    A prioritization framework to identify key attributes of transit-oriented development (TOD) using multi-criteria decision-making (MCDM) approach: an Indian context
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Sustainable Transport and Livability, 2025 · Manoj BS, Meena KK, Goswami AK</p>
+              </div>
+            </article>
+
+            <article class="publication-item flex gap-4 group reveal" data-category="journal">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1016/j.tranpol.2024.04.013" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    A review of air pollution exposure impacts on travel behaviour and way forward
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Transport Policy, 2024 · Meena KK, Goswami AK</p>
+              </div>
+            </article>
+            
+            <article class="publication-item flex gap-4 group reveal" data-category="journal">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1016/j.dajour.2024.100459" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    A machine learning approach for unraveling the influence of air quality awareness on travel behavior
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Decision Analytics Journal, 2024 · Meena KK, Bairwa D, Agarwal A</p>
+              </div>
+            </article>
+
+            <!-- NEWLY ADDED -->
+            <article class="publication-item flex gap-4 group reveal" data-category="journal">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1016/j.jth.2023.101643" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    Perception of commuters towards air quality in Delhi
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Journal of Transport & Health, 2023 · Meena KK, Singh V, Agarwal A</p>
+              </div>
+            </article>
+
+            <!-- NEWLY ADDED -->
+            <article class="publication-item flex gap-4 group reveal" data-category="journal">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5m-1.5 0A2.25 2.25 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625a3.375 3.375 0 00-3.375 3.375v11.25a3.375 3.375 0 003.375 3.375h12.75a3.375 3.375 0 003.375-3.375V9.75M10.5 2.25h1.5v1.5H10.5v-1.5z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1016/j.uclim.2021.100901" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    Travellers' exposure to air pollution: A systematic review and future directions
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Urban Climate, 2021 · Singh V, Meena KK, Agarwal A</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- NEW: Conference Highlights -->
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6">Conference Highlights</h3>
+          <div class="space-y-8 mb-12">
+            <article class="publication-item flex gap-4 group reveal" data-category="conference">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3m-16.5 0h16.5m-16.5 0H3.75m0 0V1.5m0 1.5v-1.5m16.5 0v1.5m0 0v-1.5m0 0H20.25m-16.5 0h16.5M12 6.75v3m0 3v3m0-3h3m-3 0H9m12 6H3.75a3.375 3.375 0 00-3.375 3.375v1.5a2.25 2.25 0 002.25 2.25h16.5a2.25 2.25 0 002.25-2.25v-1.5a3.375 3.375 0 00-3.375-3.375z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">Not all travellers think alike: Segmenting travel behaviour under air pollution exposure using a hybrid latent class and discrete choice approach</h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Transportation Research Board (TRB) 2026 Annual Meeting · Washington, DC (Accepted)</p>
+              </div>
+            </article>
+            <article class="publication-item flex gap-4 group reveal" data-category="conference">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3m-16.5 0h16.5m-16.5 0H3.75m0 0V1.5m0 1.5v-1.5m16.5 0v1.5m0 0v-1.5m0 0H20.25m-16.5 0h16.5M12 6.75v3m0 3v3m0-3h3m-3 0H9m12 6H3.75a3.375 3.375 0 00-3.375 3.375v1.5a2.25 2.25 0 002.25 2.25h16.5a2.25 2.25 0 002.25-2.25v-1.5a3.375 3.375 0 00-3.375-3.375z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">A review of air pollution exposure impacts on travel behaviour and way forward</h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">16th World Conference on Transport Research (WCTR) · Montréal, Canada, 2023</p>
+              </div>
+            </article>
+            
+            <!-- NEWLY ADDED -->
+            <article class="publication-item flex gap-4 group reveal" data-category="conference">
+              <div class="flex-shrink-0 pt-1">
+                <svg class="w-5 h-5 text-cyan-600 dark:text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3m-16.5 0h16.5m-16.5 0H3.75m0 0V1.5m0 1.5v-1.5m16.5 0v1.5m0 0v-1.5m0 0H20.25m-16.5 0h16.5M12 6.75v3m0 3v3m0-3h3m-3 0H9m12 6H3.75a3.375 3.375 0 00-3.375 3.375v1.5a2.25 2.25 0 002.25 2.25h16.5a2.25 2.25 0 002.25-2.25v-1.5a3.375 3.375 0 00-3.375-3.375z" /></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">
+                  <a href="https://doi.org/10.1109/COMSNETS59392.2024.10446197" target="_blank" rel="noopener" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                    Impact of air pollution on informed decision-making for choice of a travel mode
+                    <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                  </a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">16th International Conference on COMmunication Systems & NETworkS (COMSNETS), 2024</p>
+              </div>
+            </article>
+          </div>
+
+          <!-- NEW: Media Coverage -->
+          <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-6">Media Coverage</h3>
+          <div class="publication-item card !shadow-md hover:!shadow-xl hover:-translate-y-1 reveal" data-category="media">
+            <a href="https://www.thehindu.com/sci-tech/energy-and-environment/iit-kgp-app-helps-commuters-pick-greener-routes-on-the-road/article69644558.ece" target="_blank" rel="noopener" class="group flex flex-col sm:flex-row gap-4">
+              <div class_="">
+                <h4 class="font-semibold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">IIT-Kgp app helps commuters pick 'greener' routes on the road
+                  <span class="inline-block transition-all duration-200 ease-out transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true">→</span>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400">The Hindu · June 2025</p>
+                <p class="text-sm mt-2">Feature article on the DRUM web application developed by IIT Kharagpur researchers, including Kapil Kumar Meena.</p>
+              </div>
+              <div class="flex-shrink-0 sm:ml-auto order-first sm:order-last">
+                <img class="w-20 h-20 rounded-lg object-contain" src="https://placehold.co/100x100/A3000C/ffffff?text=THE+HINDU" alt="The Hindu Logo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e0e0e0/333333?text=Logo';">
+              </div>
+            </a>
+          </div>
+
+          <p class="text-center mt-12 text-sm reveal">
+            For a full list of publications, please visit my
+            <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" rel="noopener" class="font-medium text-cyan-600 dark:text-cyan-400 hover:underline">Google Scholar profile</a>.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -409,30 +614,37 @@
     <section id="projects" class="py-24 sm:py-32 scroll-mt-16">
       <div class="container reveal">
         <h2 class="text-center mb-12">Projects & Products</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           
-          <article class="card reveal" style="transition-delay: 0ms;">
+          <article class="card card-clickable reveal" style="transition-delay: 0ms;" data-modal-target="drum-modal">
             <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">DRUM — Dynamic Route Planning for Urban Mobility</h3>
             <p class="text-sm flex-grow">Web app that surfaces routes for Least Exposure (LEAP) and Least Energy (LECR) alongside Fastest and Shortest.</p>
-            <a class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block" href="https://github.com/kapil2020/DRUM" target="_blank" rel="noopener">View Repository →</a>
+            <span class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block">View Details →</span>
           </article>
           
-          <article class="card reveal" style="transition-delay: 100ms;">
+          <article class="card card-clickable reveal" style="transition-delay: 100ms;" data-modal-target="aqi-modal">
             <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">India Air Quality Dashboard</h3>
             <p class="text-sm flex-grow">Streamlit dashboard for AQI analysis and forecasting across Indian cities with rich visualizations.</p>
-            <a class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block" href="https://github.com/kapil2020/india-air-quality-dashboard" target="_blank" rel="noopener">View Repository →</a>
+            <span class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block">View Details →</span>
           </article>
           
-          <article class="card reveal" style="transition-delay: 200ms;">
+          <article class="card card-clickable reveal" style="transition-delay: 200ms;" data-modal-target="pm25-modal">
             <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Global PM2.5 Next‑day Forecasting</h3>
             <p class="text-sm flex-grow">Ensemble ML with SHAP explainability for next‑day PM<sub>2.5</sub> prediction; tidy reports and plots.</p>
-            <a class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block" href="https://github.com/kapil2020/global-PM-2.5-next-day-forecasting" target="_blank" rel="noopener">View Repository →</a>
+            <span class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block">View Details →</span>
           </article>
           
-          <article class="card reveal" style="transition-delay: 300ms;">
+          <article class="card card-clickable reveal" style="transition-delay: 300ms;" data-modal-target="pws-modal">
             <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Perceived Walkability Score</h3>
             <p class="text-sm flex-grow">CV‑based feature extraction + SP‑derived weights to map neighbourhood walkability at scale.</p>
-            <span class="text-sm font-semibold text-slate-400 dark:text-slate-500 mt-4 inline-block">In Progress</span>
+            <span class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block">View Details →</span>
+          </article>
+          
+          <!-- NEW: Travel Survey Project -->
+          <article class="card card-clickable reveal lg:col-span-1" style="transition-delay: 400ms;" data-modal-target="survey-modal">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Real-time Travel Survey Tool</h3>
+            <p class="text-sm flex-grow">Web app using React and D3.js for real-time collection and visualization of travel survey data.</p>
+            <span class="text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline mt-4 inline-block">View Details →</span>
           </article>
           
         </div>
@@ -522,7 +734,7 @@
     <!-- SERVICE -->
     <section id="service" class="py-24 sm:py-32 bg-slate-50 dark:bg-slate-900/40 scroll-mt-16">
       <div class="container reveal">
-        <h2 class="text-center mb-12">Academic Service</h2>
+        <h2 class="text-center mb-12">Academic Service & Leadership</h2>
         <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           <div class="reveal" style="transition-delay: 0ms;">
             <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Peer Reviewer</h3>
@@ -540,6 +752,26 @@
               <li>ASCE Transportation &amp; Development Institute (2024–)</li>
               <li>Transportation Research Group of India (2023–)</li>
               <li>World Conference on Transport Research Society (2022–)</li>
+            </ul>
+          </div>
+          <!-- NEW: Positions of Responsibility -->
+          <div class="reveal" style="transition-delay: 200ms;">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Leadership & Coordination</h3>
+            <ul class="space-y-2 styled-list">
+              <li><strong>Overall Coordinator:</strong> 2nd Annual Conference on Infrastructure and Built Environment (IBSR), IIT Kharagpur (2024)</li>
+              <li><strong>Overall Coordinator:</strong> 1st Annual Conference on Infrastructure and Built Environment (IBSR), IIT Kharagpur (2023)</li>
+              <li><strong>Department Social Media Head:</strong> IIT Kharagpur (2022–2023)</li>
+              <li><strong>Department Placement Representative:</strong> IIT Roorkee (2020–2021)</li>
+            </ul>
+          </div>
+          <!-- NEW: Teaching Assistantship -->
+          <div class="reveal" style="transition-delay: 300ms;">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Teaching Assistantship</h3>
+            <ul class="space-y-2 styled-list">
+              <li><strong>CE13001:</strong> Engineering Drawing And Computer Graphics (Spring 2023)</li>
+              <li><strong>NPTEL:</strong> Multimodal Urban Transport System (Fall 2022)</li>
+              <li><strong>CEN 662:</strong> Intersection Design and Control (Spring 2020)</li>
+              <li><strong>CEN 562:</strong> Pavement Analysis and Design (Fall 2019)</li>
             </ul>
           </div>
         </div>
@@ -587,6 +819,86 @@
       </a>
     </div>
   </footer>
+
+  <!-- NEW: Project Modals -->
+  <div id="modal-container">
+    
+    <!-- DRUM Modal -->
+    <div id="drum-modal" class="modal" aria-hidden="true">
+      <div class="modal-overlay" tabindex="-1" data-modal-close></div>
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="drum-title">
+        <button class="modal-close-btn" data-modal-close aria-label="Close modal">
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div class="modal-body">
+          <img src="https://placehold.co/600x300/f0f9ff/0891b2?text=DRUM+App+Screenshot" alt="DRUM App Screenshot" class="w-full h-48 object-cover rounded-lg mb-6" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e0e0e0/333333?text=Image+Not+Found';">
+          <h3 id="drum-title" class="text-xl font-bold text-slate-900 dark:text-white mb-2">DRUM — Dynamic Route Planning for Urban Mobility</h3>
+          <p class="text-sm mb-4">DRUM is a web-based application designed to provide commuters with sustainable routing options. Beyond just the fastest or shortest path, it calculates routes based on:
+            <ul class="list-disc list-inside text-sm space-y-1 my-4">
+              <li><strong>Least Exposure (LEAP):</strong> Minimizes commuter exposure to on-road air pollution (PM<sub>2.5</sub>).</li>
+              <li><strong>Least Energy (LECR):</strong> Optimizes for the lowest energy consumption, promoting green mobility.</li>
+              <li><strong>Fastest Route:</strong> Traditional time-based optimization.</li>
+              <li><strong>Shortest Route:</strong> Traditional distance-based optimization.</li>
+            </ul>
+          This project connects real-time environmental data with user-facing decision tools to encourage cleaner travel choices.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <a href="https://github.com/kapil2020/DRUM" target="_blank" rel="noopener" class="btn btn-primary">
+              <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+              View Repository
+            </a>
+            <a href="https://doi.org/10.1177/03611981241253289" target="_blank" rel="noopener" class="btn btn-ghost">Related Publication →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PWS Modal -->
+    <div id="pws-modal" class="modal" aria-hidden="true">
+      <div class="modal-overlay" tabindex="-1" data-modal-close></div>
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="pws-title">
+        <button class="modal-close-btn" data-modal-close aria-label="Close modal">
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div class="modal-body">
+          <img src="https://placehold.co/600x300/f0f9ff/0891b2?text=Perceived+Walkability" alt="Perceived Walkability Score" class="w-full h-48 object-cover rounded-lg mb-6" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e0e0e0/333333?text=Image+Not+Found';">
+          <h3 id="pws-title" class="text-xl font-bold text-slate-900 dark:text-white mb-2">Perceived Walkability Score (PWS)</h3>
+          <p class="text-sm mb-4">This research framework proposes a novel method for mapping urban walkability at a neighbourhood scale. It moves beyond traditional metrics by:
+            <ul class="list-disc list-inside text-sm space-y-1 my-4">
+              <li>Using <strong>Computer Vision (CV)</strong> to automatically extract objective street-level features (e.g., sidewalk presence, greenery, lighting).</li>
+              <li>Integrating <strong>Stated Preference (SP)</strong> survey data to derive weights for these features based on actual human perception.</li>
+            </ul>
+          The result is a "Perceived Walkability Score" that more accurately reflects how pedestrians experience and value the built environment.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <span class="btn btn-ghost !text-slate-500 !cursor-not-allowed">Repository (In Progress)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW: Survey Tool Modal -->
+    <div id="survey-modal" class="modal" aria-hidden="true">
+      <div class="modal-overlay" tabindex="-1" data-modal-close></div>
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="survey-title">
+        <button class="modal-close-btn" data-modal-close aria-label="Close modal">
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+        <div class="modal-body">
+          <img src="https://placehold.co/600x300/f0f9ff/0891b2?text=React+Survey+App" alt="Travel Survey App Screenshot" class="w-full h-48 object-cover rounded-lg mb-6" onerror="this.onerror=null;this.src='httpsimages/placeholder.co/600x300/e0e0e0/333333?text=Image+Not+Found';">
+          <h3 id="survey-title" class="text-xl font-bold text-slate-900 dark:text-white mb-2">Real-time Travel Survey Tool</h3>
+          <p class="text-sm mb-4">A web-based platform developed for the real-time collection of travel survey data. This application features a modern frontend built with <strong>React.js</strong> for a responsive user interface and utilizes <strong>D3.js</strong> for dynamic data visualization, allowing for immediate insights as data is collected.</p>
+          <div class="flex flex-wrap gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <a href="https://github.com/kapil2020/react-frontend-kgp" target="_blank" rel="noopener" class="btn btn-primary">
+              <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+              View Repository
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- /modal-container -->
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -753,6 +1065,154 @@
           });
         });
       }
+
+      // --- NEW: Animated Stats on Scroll ---
+      const animateCountUp = (el) => {
+        const target = parseInt(el.dataset.count, 10);
+        const duration = 1500; // 1.5 seconds
+        const suffix = el.innerText.includes('+') ? '+' : '';
+        let start = 0;
+        const startTime = Date.now();
+
+        const updateCount = () => {
+          const now = Date.now();
+          const progress = Math.min(1, (now - startTime) / duration);
+          const current = Math.floor(progress * target);
+          
+          el.innerText = current + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            el.innerText = target + suffix; // Ensure it ends on the exact number
+          }
+        };
+        updateCount();
+      };
+
+      const statsSection = document.getElementById('stats-section');
+      if (statsSection) {
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const counters = entry.target.querySelectorAll('[data-count]');
+              counters.forEach(counter => {
+                animateCountUp(counter);
+              });
+              observer.unobserve(entry.target); // Animate only once
+            }
+          });
+        }, { threshold: 0.5 });
+        statsObserver.observe(statsSection);
+      }
+
+      // --- NEW: Publication Filtering ---
+      const filterContainer = document.getElementById('publication-filters');
+      const pubList = document.getElementById('publication-list');
+      
+      if (filterContainer && pubList) {
+        const filterButtons = filterContainer.querySelectorAll('.filter-btn');
+        const publicationItems = pubList.querySelectorAll('.publication-item');
+        const sectionHeadings = pubList.querySelectorAll('h3');
+
+        filterContainer.addEventListener('click', (e) => {
+          if (!e.target.matches('.filter-btn')) return;
+
+          const filter = e.target.dataset.filter;
+
+          // Update button active state
+          filterButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === filter);
+          });
+
+          let hasVisibleItems = false;
+
+          // Update publication visibility
+          publicationItems.forEach(item => {
+            const category = item.dataset.category;
+            const isVisible = (filter === 'all' || filter === category);
+            item.classList.toggle('hidden', !isVisible);
+            if(isVisible) hasVisibleItems = true;
+          });
+
+          // Optional: Hide headings if their sections are empty
+          sectionHeadings.forEach(heading => {
+            let nextElement = heading.nextElementSibling;
+            let sectionHasVisibleItems = false;
+            while(nextElement && !nextElement.matches('h3')) {
+              if (nextElement.matches('.publication-item') && !nextElement.classList.contains('hidden')) {
+                sectionHasVisibleItems = true;
+                break;
+              }
+              if (nextElement.matches('div')) { // Check inside the <div> wrapper
+                 if (nextElement.querySelector('.publication-item:not(.hidden)')) {
+                   sectionHasVisibleItems = true;
+                   break;
+                 }
+              }
+              nextElement = nextElement.nextElementSibling;
+            }
+            heading.classList.toggle('hidden', !sectionHasVisibleItems);
+          });
+        });
+      }
+      
+      // --- NEW: Project Modals ---
+      const modalContainer = document.getElementById('modal-container');
+      if (modalContainer) {
+        const openModalTriggers = document.querySelectorAll('[data-modal-target]');
+        const closeModalTriggers = document.querySelectorAll('[data-modal-close]');
+
+        const openModal = (modalId) => {
+          const modal = document.getElementById(modalId);
+          if (modal) {
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+          }
+        };
+
+        const closeModal = (modal) => {
+          if (modal) {
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = ''; // Restore scrolling
+          }
+        };
+
+        openModalTriggers.forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            openModal(trigger.dataset.modalTarget);
+          });
+          // Make clickable cards accessible via keyboard
+          trigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openModal(trigger.dataset.modalTarget);
+            }
+          });
+          trigger.setAttribute('role', 'button');
+          trigger.setAttribute('tabindex', '0');
+        });
+
+        closeModalTriggers.forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            const modal = trigger.closest('.modal');
+            closeModal(modal);
+          });
+        });
+
+        // Close modal on Escape key press
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            const openModal = document.querySelector('.modal.show');
+            if (openModal) {
+              closeModal(openModal);
+            }
+          }
+        });
+      }
+
     });
   </script>
 
