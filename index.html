@@ -7,7 +7,7 @@
   <meta name="description" content="Kapil Meena — Final-year PhD researcher at IIT Kharagpur specializing in travel behaviour, sustainable mobility, air quality exposure, and data-driven urban analytics." />
   <meta property="og:title" content="Kapil Meena | PhD Researcher | Sustainable Mobility & Air Quality" />
   <meta property="og:description" content="Kapil Meena — Final-year PhD researcher at IIT Kharagpur specializing in travel behaviour, sustainable mobility, air quality exposure, and data-driven urban analytics." />
-  <meta property="og:image" content="https://placehold.co/1200x630/0891b2/ffffff?text=Kapil+Meena" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/kapil2020/web/main/kp_1.png" />
   <meta property="og:url" content="https://kapilmeena.com" />
   
   <!-- Fonts -->
@@ -22,7 +22,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'class', // Note: Changed to 'class' for manual toggle
       theme: {
         extend: {
           fontFamily: {
@@ -32,20 +32,29 @@
             primary: {
               50: '#f0f9ff',
               100: '#e0f2fe',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7', // Adjusted primary color
+              700: '#0369a1',
+              800: '#075985',
               900: '#0c4a6e',
             }
           },
+           boxShadow: { // Added from new code
+            soft: '0 10px 30px -12px rgba(0,0,0,0.25)'
+           },
           animation: {
             'fade-in': 'fadeIn 0.8s ease-out forwards',
             'slide-up': 'slideUp 0.6s ease-out forwards',
             'float': 'float 6s ease-in-out infinite',
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'blob': 'blob 7s infinite',
+            'tilt': 'tilt 10s infinite linear',
           },
           keyframes: {
-            fadeIn: {
+            fadeIn: { // This definition might be overwritten by new CSS, which is fine
               '0%': { opacity: '0', transform: 'translateY(20px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' }
             },
@@ -56,6 +65,18 @@
             float: {
               '0%, 100%': { transform: 'translateY(0px)' },
               '50%': { transform: 'translateY(-10px)' }
+            },
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' }
+            },
+            tilt: {
+              '0%, 100%': { transform: 'rotate(0deg)' },
+              '25%': { transform: 'rotate(1deg)' },
+              '50%': { transform: 'rotate(0eg)' },
+              '75%': { transform: 'rotate(-1deg)' },
             }
           }
         }
@@ -75,7 +96,7 @@
       --glass-backdrop: rgba(255, 255, 255, 0.2);
     }
 
-    [data-theme="dark"] {
+    .dark {
       --glass-bg: rgba(15, 23, 42, 0.4);
       --glass-border: rgba(148, 163, 184, 0.2);
       --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -84,50 +105,44 @@
 
     .glass {
       background: var(--glass-bg);
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
     }
-
-    .gradient-01 {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    .nav-link.active {
+      color: #0284c7; /* Tailwind primary-600 */
     }
-
-    .gradient-02 {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    .dark .nav-link.active {
+      color: #38bdf8; /* Tailwind primary-400 */
     }
-
-    .gradient-03 {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    }
-
-    .gradient-04 {
-      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    .nav-link.active span {
+      width: 100%;
     }
 
     .text-gradient {
-      background: linear-gradient(135deg, #06b6d4, #0891b2, #0e7490);
+      background: linear-gradient(135deg, #0284c7, #0369a1, #075985);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-    }
-
-    .hover\:scale-105:hover {
-      transform: scale(1.05);
     }
 
     .perspective-1000 {
       perspective: 1000px;
     }
 
-    .rotate-y-15 {
-      transform: rotateY(15deg);
-    }
-
     .glass-card {
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
+      height: 100%; /* Ensure cards in a grid have same height */
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .glass-card-content {
+      flex-grow: 1;
     }
 
     .glass-card::before {
@@ -161,27 +176,18 @@
     }
 
     .scrollbar-thin::-webkit-scrollbar-thumb {
-      background: rgba(6, 182, 212, 0.5);
+      background: rgba(2, 132, 199, 0.5); /* primary-600 */
       border-radius: 3px;
     }
 
     .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-      background: rgba(6, 182, 212, 0.7);
+      background: rgba(2, 132, 199, 0.7);
     }
 
     @media (max-width: 768px) {
       .glass-card:hover {
         transform: translateY(-4px);
       }
-    }
-
-    .loading {
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -468px 0; }
-      100% { background-position: 468px 0; }
     }
 
     .metric-card {
@@ -191,7 +197,7 @@
 
     .metric-card:hover {
       transform: translateY(-10px) scale(1.02);
-      background: linear-gradient(135deg, var(--glass-bg), rgba(6, 182, 212, 0.1));
+      background: linear-gradient(135deg, var(--glass-bg), rgba(2, 132, 199, 0.1));
     }
 
     .publication-timeline {
@@ -206,25 +212,25 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(to bottom, #06b6d4, #0891b2);
+      background: linear-gradient(to bottom, #0ea5e9, #0284c7);
     }
 
-    .publication-item {
+    .timeline-item {
       position: relative;
       margin-bottom: 2rem;
     }
 
-    .publication-item::before {
+    .timeline-item::before {
       content: '';
       position: absolute;
-      left: -3rem;
+      left: -3rem; /* Adjusted from -3rem */
       top: 0.5rem;
       width: 12px;
       height: 12px;
-      background: #06b6d4;
+      background: #0ea5e9;
       border-radius: 50%;
       border: 3px solid white;
-      box-shadow: 0 0 0 3px #06b6d4;
+      box-shadow: 0 0 0 3px #0ea5e9;
     }
 
     .fade-in-up {
@@ -238,16 +244,104 @@
       transform: translateY(0);
     }
 
-    .parallax {
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
+    
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+    
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Particle background */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    /* === START: NEW STYLES FROM PUBLICATIONS FILE === */
+    .no-scrollbar::-webkit-scrollbar{display:none}
+    .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+    
+    .fade-in{animation:fadeIn .35s ease-out both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+    
+    .year-sticky{position:sticky;top:4rem;z-index:10}
+    
+    /* This rule was duplicated, which is fine */
+    .clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    
+    /* Publication item styles */
+    .publication-item {
+      transition: all 0.5s ease-out;
+    }
+    
+    .publication-item.hidden {
+      opacity: 0;
+      transform: scale(0.95);
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+    
+    /* Button styles from new JS, moved here */
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .65rem;border-radius:.65rem;border:1px solid rgb(203 213 225/1);background:rgb(248 250 252/1);color:inherit;font-size:.8rem}
+    .dark .btn{border-color:rgb(30 41 59/1);background:rgb(15 23 42/0.4)}
+    .btn:hover{background:rgb(241 245 249/1)}
+    .dark .btn:hover{background:rgb(30 41 59/1)}
+    
+    .btn-link {
+      @apply text-xs font-semibold text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-600 rounded-full px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all;
+    }
+    
+    .btn-link-doi {
+       @apply text-xs font-semibold text-primary-600 dark:text-primary-400 border border-primary-300 dark:border-primary-600 rounded-full px-3 py-1 hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:border-primary-400 dark:hover:border-primary-500 transition-all;
+    }
+    
+    .pub-tag {
+       @apply inline-block bg-primary-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide;
+    }
+    
+    .conf-tag {
+       @apply inline-block bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide;
+    }
+    /* === END: NEW STYLES === */
+    
   </style>
 </head>
 
 <body class="font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased overflow-x-hidden">
+  <!-- Particles Background -->
+  <canvas id="particles"></canvas>
+
   <!-- Loading Screen -->
   <div id="loading-screen" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 flex items-center justify-center transition-opacity duration-1000">
     <div class="text-center">
@@ -261,11 +355,11 @@
   </div>
 
   <!-- Cursor -->
-  <div id="cursor" class="fixed w-4 h-4 bg-primary-600 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block transition-all duration-300"></div>
+  <div id="cursor" class="fixed w-4 h-4 bg-primary-600 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block" style="transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;"></div>
 
   <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-40 glass backdrop-blur-xl transition-all duration-300 border-b border-white/20 dark:border-gray-800/50">
-    <nav class="container mx-auto px-6 py-4">
+  <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+    <nav class="container mx-auto px-6 py-4 transition-all duration-300" id="navbar">
       <div class="flex items-center justify-between">
         <!-- Logo -->
         <a href="#home" class="group flex items-center space-x-3 transition-all duration-300 hover:scale-105">
@@ -303,6 +397,10 @@
             Experience
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
           </a></li>
+          <li><a href="#awards" class="nav-link group relative text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
+            Awards
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
+          </a></li>
           <li><a href="#contact" class="nav-link group relative text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">
             Contact
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300"></span>
@@ -312,12 +410,12 @@
         <!-- Right side controls -->
         <div class="flex items-center space-x-4">
           <!-- Theme Toggle -->
-          <button id="theme-toggle" class="p-2 rounded-lg backdrop-blur-sm glass text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-200" aria-label="Toggle dark mode">
+          <button id="theme-toggle" class="p-2 rounded-lg glass text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-200" aria-label="Toggle dark mode">
             <i id="theme-icon" class="fas fa-moon text-lg"></i>
           </button>
 
           <!-- Mobile menu button -->
-          <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg backdrop-blur-sm glass text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-200" aria-label="Toggle menu">
+          <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg glass text-gray-700 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-200" aria-label="Toggle menu">
             <i class="fas fa-bars text-lg"></i>
           </button>
 
@@ -330,14 +428,15 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden hidden overflow-hidden transition-all duration-300 ease-out">
-      <div class="px-6 py-4 space-y-2 backdrop-blur-sm glass border-t border-white/20 dark:border-gray-800/50">
-        <a href="#about" class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">About</a>
-        <a href="#research" class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Research</a>
-        <a href="#publications" class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Publications</a>
-        <a href="#projects" class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Projects</a>
-        <a href="#experience" class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Experience</a>
-        <a href="#contact" class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Contact</a>
+    <div id="mobile-menu" class="lg:hidden hidden overflow-hidden transition-all duration-300 ease-out max-h-0">
+      <div class="px-6 py-4 space-y-2 glass border-t border-white/20 dark:border-gray-800/50">
+        <a href="#about" class="mobile-nav-link block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">About</a>
+        <a href="#research" class="mobile-nav-link block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Research</a>
+        <a href="#publications" class="mobile-nav-link block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Publications</a>
+        <a href="#projects" class="mobile-nav-link block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Projects</a>
+        <a href="#experience" class="mobile-nav-link block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Experience</a>
+        <a href="#awards" class="mobile-nav-link block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Awards</a>
+        <a href="#contact" class="mobile-nav-link block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors">Contact</a>
       </div>
     </div>
   </header>
@@ -358,11 +457,11 @@
         <div class="max-w-4xl mx-auto">
           <!-- Profile Image -->
           <div class="mx-auto mb-8">
-            <div class="relative group">
-              <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full shadow-2xl border-4 border-white dark:border-gray-800 mx-auto overflow-hidden">
-                <img src="https://placehold.co/200x200/0891b2/ffffff?text=KM" alt="Kapil Meena" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-              </div>
+            <div class="relative group w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto">
               <div class="absolute -inset-1 bg-gradient-to-r from-primary-600 via-blue-600 to-cyan-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+              <div class="relative w-full h-full bg-gradient-to-br from-primary-400 to-primary-600 rounded-full shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden">
+                <img src="https://raw.githubusercontent.com/kapil2020/web/main/kp_1.png" alt="Kapil Meena" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+              </div>
             </div>
           </div>
 
@@ -374,62 +473,49 @@
             </h1>
             
             <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm sm:text-base">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-primary-600 bg-primary-100 dark:bg-primary-900/30 dark:text-primary-400 font-semibold">
-                <i class="fas fa-graduation-cap mr-2"></i>
-                PhD Candidate | IIT Kharagpur
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-primary-700 bg-primary-100 dark:bg-primary-900/30 dark:text-primary-300 font-medium">
+                <i class="fas fa-graduation-cap mr-1.5"></i> PhD Candidate, IIT Kharagpur
               </span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-green-600 bg-green-100 dark:bg-green-900/30 dark:text-green-400 font-semibold">
-                <i class="fas fa-leaf mr-2"></i>
-                Sustainable Mobility
-              </span>
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 font-semibold">
-                <i class="fas fa-wind mr-2"></i>
-                Air Quality Research
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-green-700 bg-green-100 dark:bg-green-900/30 dark:text-green-300 font-medium">
+                <i class="fas fa-certificate mr-1.5"></i> MTech, IIT Roorkee
               </span>
             </div>
 
-            <p class="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Building <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600 font-semibold">data-driven solutions</span> for cleaner, safer, and more equitable urban mobility through advanced travel behavior modeling and air quality analytics.
+            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Pioneering sustainable urban mobility through data-driven insights on travel behavior, air quality exposure, and green routing. Seeking to apply this research in a challenging postdoctoral role.
             </p>
 
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
-              <a href="#contact" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-primary-500/25 transform hover:scale-105 transition-all duration-300">
-                <i class="fas fa-rocket mr-2 group-hover:animate-bounce"></i>
-                Start Collaboration
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <a href="#research" class="px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-semibold hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-primary-500/25 inline-flex items-center">
+                <i class="fas fa-flask mr-2"></i> Explore Research
               </a>
-              <a href="kp_cv_nov.pdf" class="inline-flex items-center px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-xl hover:bg-primary-600 hover:text-white transition-all duration-300 transform hover:scale-105" download>
-                <i class="fas fa-download mr-2"></i>
-                Download CV
+              <a href="#contact" class="px-8 py-4 border-2 border-primary-600 text-primary-600 rounded-xl font-semibold hover:bg-primary-600 hover:text-white transform hover:scale-105 transition-all duration-300 inline-flex items-center">
+                <i class="fas fa-envelope mr-2"></i> Postdoc Inquiry
               </a>
             </div>
 
-            <!-- Social Links -->
-            <div class="flex justify-center space-x-6 pt-8">
-              <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" rel="noopener" class="group p-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-primary-600 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="Google Scholar">
-                <i class="fab fa-google-scholar text-xl group-hover:-translate-y-1 transition-transform"></i>
-              </a>
-              <a href="https://github.com/kapil2020" target="_blank" rel="noopener" class="group p-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-900 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-110" aria-label="GitHub">
-                <i class="fab fa-github text-xl group-hover:-translate-y-1 transition-transform"></i>
-              </a>
-              <a href="https://www.linkedin.com/in/kapil-meena-11b02b157/" target="_blank" rel="noopener" class="group p-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="LinkedIn">
-                <i class="fab fa-linkedin text-xl group-hover:-translate-y-1 transition-transform"></i>
-              </a>
-              <a href="https://twitter.com/kapilmeena" target="_blank" rel="noopener" class="group p-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-blue-500 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="Twitter">
-                <i class="fab fa-twitter text-xl group-hover:-translate-y-1 transition-transform"></i>
-              </a>
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto pt-12">
+              <div class="metric-card p-6 rounded-2xl text-center fade-in-up">
+                <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">
+                  <span data-target="121">0</span>+
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Citations</div>
+              </div>
+              <div class="metric-card p-6 rounded-2xl text-center fade-in-up" style="animation-delay: 0.1s;">
+                <div class="text-3xl font-bold text-green-600 dark:text-green-400">
+                  <span data-target="15">0</span>+
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Publications</div>
+              </div>
+              <div class="metric-card p-6 rounded-2xl text-center fade-in-up" style="animation-delay: 0.2s;">
+                <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">
+                  <span data-target="12">0</span>+
+                </div>
+                <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">Conferences</div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div class="flex flex-col items-center space-y-2">
-          <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-            <div class="w-1 h-3 bg-gray-400 rounded-full animate-bounce mt-2"></div>
-          </div>
-          <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">Scroll</span>
         </div>
       </div>
     </section>
@@ -437,170 +523,69 @@
     <!-- About Section -->
     <section id="about" class="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div class="container mx-auto px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16 fade-in-up">
-            <h2 class="text-4xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-primary-600 dark:from-white dark:to-primary-400">
-              About Me
-            </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-primary-600 to-primary-400 mx-auto rounded-full"></div>
-          </div>
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">About Me</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto fade-in-up" data-aos-delay="100">Driving sustainable mobility with 7+ years of data-driven research</p>
+        </div>
 
-          <div class="grid lg:grid-cols-3 gap-8">
-            <!-- Left Column - Bio -->
-            <div class="lg:col-span-2 space-y-8 fade-in-up" style="animation-delay: 0.1s">
-              <div class="glass-card p-8 rounded-2xl">
-                <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Researcher. Innovator. Educator.</h3>
-                <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                  As a final-year PhD candidate at <span class="font-semibold text-primary-600 dark:text-primary-400">IIT Kharagpur</span>, I specialize in the intersection of 
-                  <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400">sustainable mobility</span> and 
-                  <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">air quality analytics</span>. 
-                  My work focuses on understanding how environmental factors influence travel behavior and developing data-driven tools to promote greener urban transportation.
-                </p>
-                
-                <div class="grid md:grid-cols-2 gap-6 mb-8">
-                  <div class="space-y-3">
-                    <div class="flex items-center text-sm">
-                      <i class="fas fa-map-marker-alt text-primary-600 mr-3"></i>
-                      <span class="font-medium">Location</span>
-                      <span class="text-gray-600 dark:text-gray-400 ml-auto">Kharagpur, India</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                      <i class="fas fa-envelope text-primary-600 mr-3"></i>
-                      <span class="font-medium">Email</span>
-                      <span class="text-gray-600 dark:text-gray-400 ml-auto">kapil.meena@kgpian.iitkgp.ac.in</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                      <i class="fas fa-phone text-primary-600 mr-3"></i>
-                      <span class="font-medium">Phone</span>
-                      <span class="text-gray-600 dark:text-gray-400 ml-auto">+91 8875385597</span>
-                    </div>
-                  </div>
-                  <div class="space-y-3">
-                    <div class="flex items-center text-sm">
-                      <i class="fas fa-calendar-alt text-primary-600 mr-3"></i>
-                      <span class="font-medium">PhD</span>
-                      <span class="text-gray-600 dark:text-gray-400 ml-auto">2022 - Present</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                      <i class="fas fa-university text-primary-600 mr-3"></i>
-                      <span class="font-medium">M.Tech</span>
-                      <span class="text-gray-600 dark:text-gray-400 ml-auto">IIT Roorkee</span>
-                    </div>
-                    <div class="flex items-center text-sm">
-                      <i class="fas fa-award text-primary-600 mr-3"></i>
-                      <span class="font-medium">GATE Rank</span>
-                      <span class="text-gray-600 dark:text-gray-400 ml-auto">559 (2019)</span>
-                    </div>
-                  </div>
-                </div>
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Left: Content -->
+          <div class="space-y-8 fade-in-up" data-aos-delay="200">
+            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              I am a final-year PhD researcher at IIT Kharagpur with over <strong>7 years of dedicated experience</strong> in sustainable transportation and urban mobility. My work exists at the intersection of <strong>travel behavior, air quality exposure, and data science</strong>. I build tools and models to understand *why* people travel the way they do and *how* we can nudge those choices toward greener, healthier outcomes.
+            </p>
+            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              My expertise lies in <strong>Machine Learning, discrete choice modeling, and big data analysis</strong>, which I've used to develop tools like the DRUM web app for pollution-aware routing. With a research portfolio of 15+ publications (121+ citations) in top journals like <em>Transport Policy</em> and <em>Urban Climate</em>, my goal is to translate complex data into actionable policy.
+            </p>
+            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              I am actively <strong>seeking a postdoctoral research position</strong> where I can apply my quantitative skills to solve pressing global mobility challenges and contribute to building smarter, more resilient cities.
+            </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div class="text-center p-4 rounded-xl bg-primary-50 dark:bg-primary-900/20">
-                    <div class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-1">10+</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Peer-reviewed Publications</div>
-                  </div>
-                  <div class="text-center p-4 rounded-xl bg-green-50 dark:bg-green-900/20">
-                    <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-1">15+</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Conference Presentations</div>
-                  </div>
-                  <div class="text-center p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
-                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">5+</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Awards & Recognitions</div>
-                  </div>
+            <!-- Education Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
+              <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="300">
+                <div class="glass-card-content">
+                  <i class="fas fa-graduation-cap text-primary-600 text-2xl mb-3"></i>
+                  <h3 class="font-bold text-xl mb-2">PhD (2022–Present)</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">IIT Kharagpur • Travel Behaviour & Air Quality</p>
                 </div>
               </div>
-
-              <!-- Skills -->
-              <div class="glass-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s">
-                <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Technical Expertise</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <div class="group p-4 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300 cursor-pointer">
-                    <div class="flex items-center space-x-3">
-                      <div class="p-2 bg-primary-100 dark:bg-primary-900 rounded-lg">
-                        <i class="fas fa-code text-primary-600 text-lg"></i>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900 dark:text-white">Programming</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Python, R, JavaScript, SQL</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="group p-4 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 cursor-pointer">
-                    <div class="flex items-center space-x-3">
-                      <div class="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
-                        <i class="fas fa-database text-green-600 text-lg"></i>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900 dark:text-white">Data Science</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">NLOGIT, SPSS, Tableau, QGIS</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="group p-4 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 cursor-pointer">
-                    <div class="flex items-center space-x-3">
-                      <div class="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                        <i class="fas fa-globe text-blue-600 text-lg"></i>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900 dark:text-white">Web Development</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">ReactJS, Streamlit, D3.js</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="group p-4 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 dark:border-gray-700/50 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300 cursor-pointer">
-                    <div class="flex items-center space-x-3">
-                      <div class="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
-                        <i class="fas fa-chart-line text-purple-600 text-lg"></i>
-                      </div>
-                      <div>
-                        <h4 class="font-semibold text-gray-900 dark:text-white">Modeling</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Discrete Choice, ML, MCDM</p>
-                      </div>
-                    </div>
-                  </div>
+              <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="400">
+                <div class="glass-card-content">
+                  <i class="fas fa-certificate text-green-600 text-2xl mb-3"></i>
+                  <h3 class="font-bold text-xl mb-2">MTech (2019–2021)</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">IIT Roorkee • Transportation Engineering</p>
+                </div>
+              </div>
+              <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="500">
+                <div class="glass-card-content">
+                  <i class="fas fa-university text-blue-600 text-2xl mb-3"></i>
+                  <h3 class="font-bold text-xl mb-2">BTech (2015–2019)</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">RTU Kota • Civil Engineering (Honors)</p>
                 </div>
               </div>
             </div>
 
-            <!-- Right Column - Quick Stats -->
-            <div class="space-y-6 fade-in-up" style="animation-delay: 0.3s">
-              <!-- Research Impact -->
-              <div class="glass-card p-6 rounded-2xl metric-card">
-                <div class="text-center">
-                  <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600 mb-2" data-target="115">0</div>
-                  <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Total Citations</div>
-                  <div class="mt-2 h-1 bg-gradient-to-r from-primary-600 to-blue-600 rounded-full w-16 mx-auto transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-                </div>
-              </div>
+            <!-- Links -->
+            <div class="flex flex-wrap gap-6 mt-8">
+              <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 flex items-center font-medium transition-colors">
+                <i class="fab fa-google-scholar mr-2"></i> Google Scholar
+              </a>
+              <a href="https://github.com/kapil2020" target="_blank" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white flex items-center font-medium transition-colors">
+                <i class="fab fa-github mr-2"></i> GitHub
+              </a>
+              <a href="https://sites.google.com/view/kapil-lab/home" target="_blank" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 flex items-center font-medium transition-colors">
+                <i class="fas fa-flask mr-2"></i> Lab Site
+              </a>
+            </div>
+          </div>
 
-              <!-- h-index -->
-              <div class="glass-card p-6 rounded-2xl metric-card">
-                <div class="text-center">
-                  <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 mb-2" data-target="6">0</div>
-                  <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">h-index</div>
-                </div>
-              </div>
-
-              <!-- Publications -->
-              <div class="glass-card p-6 rounded-2xl metric-card">
-                <div class="text-center">
-                  <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-violet-600 mb-2" data-target="15">0</div>
-                  <div class="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Publications</div>
-                </div>
-              </div>
-
-              <!-- Current Status -->
-              <div class="glass-card p-6 rounded-2xl border-2 border-dashed border-primary-200 dark:border-primary-800">
-                <div class="text-center space-y-3">
-                  <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-search text-white text-xl"></i>
-                  </div>
-                  <h4 class="font-semibold text-lg text-gray-900 dark:text-white">Open to Opportunities</h4>
-                  <p class="text-sm text-gray-600 dark:text-gray-400">Postdoctoral positions for 2026</p>
-                  <a href="#contact" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 text-sm font-semibold">
-                    <i class="fas fa-arrow-right mr-1"></i> Get in touch
-                  </a>
-                </div>
+          <!-- Right: Image -->
+          <div class="fade-in-up" data-aos-delay="600">
+            <div class="relative perspective-1000">
+              <img src="https://raw.githubusercontent.com/kapil2020/web/main/kp_1.png" alt="Kapil Meena in professional setting" class="w-full rounded-2xl shadow-2xl transition-transform duration-500 hover:rotate-y-15">
+              <div class="absolute top-4 right-4 bg-primary-600 text-white px-4 py-2 rounded-lg font-semibold shadow-lg">
+                <i class="fas fa-award mr-1"></i> Seeking Postdoc
               </div>
             </div>
           </div>
@@ -609,635 +594,534 @@
     </section>
 
     <!-- Research Section -->
-    <section id="research" class="py-24 relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-indigo-100/50 dark:from-gray-900/50 dark:via-blue-900/20 dark:to-purple-900/30"></div>
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16 fade-in-up">
-          <h2 class="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
-            Research Focus
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Exploring the nexus of human behavior, environmental quality, and urban systems
-          </p>
+    <section id="research" class="py-24 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Research Focus</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto fade-in-up" data-aos-delay="100">Decoding complex mobility choices for greener, healthier cities</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <!-- Travel Behavior -->
-          <div class="glass-card p-6 rounded-2xl group cursor-pointer hover:bg-gradient-to-br hover:from-primary-50 hover:to-blue-50 dark:hover:from-primary-900/20 dark:hover:to-blue-900/20 transition-all duration-500 fade-in-up" style="animation-delay: 0.1s">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="p-3 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl text-white flex-shrink-0">
-                <i class="fas fa-user-clock text-lg"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="font-bold text-xl text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Travel Behavior</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Hybrid latent-class & discrete-choice models for behavior under environmental constraints</p>
-              </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="150">
+            <div class="glass-card-content">
+              <i class="fas fa-lungs text-primary-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-2xl mb-4">Air Quality Exposure</h3>
+              <p class="text-gray-600 dark:text-gray-400">Modeling the invisible: Quantifying commuter exposure and the health impacts of travel choices.</p>
             </div>
-            <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Choice Modeling</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Multimodal Access</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Behavioral Segmentation</li>
-            </ul>
+            <a href="#publications" class="mt-4 inline-block text-primary-600 hover:text-primary-700 dark:text-primary-400 font-medium">View Studies <i class="fas fa-arrow-right ml-1"></i></a>
           </div>
-
-          <!-- Air Quality -->
-          <div class="glass-card p-6 rounded-2xl group cursor-pointer hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-500 fade-in-up" style="animation-delay: 0.2s">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl text-white flex-shrink-0">
-                <i class="fas fa-wind text-lg"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="font-bold text-xl text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Air Quality Exposure</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">On-road PM2.5 exposure assessment, route-level trade-offs, and health impact modeling</p>
-              </div>
+          <!-- Card 2 -->
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="200">
+            <div class="glass-card-content">
+              <i class="fas fa-route text-green-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-2xl mb-4">Sustainable Routing</h3>
+              <p class="text-gray-600 dark:text-gray-400">From data to decision: The DRUM app for real-time, pollution-aware route planning.</p>
             </div>
-            <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>PM2.5 Monitoring</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Exposure Assessment</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Health Risk Modeling</li>
-            </ul>
+            <a href="https://kapil2020.github.io/web" target="_blank" class="mt-4 inline-block text-green-600 hover:text-green-700 dark:text-green-400 font-medium">Demo App <i class="fas fa-external-link-alt ml-1"></i></a>
           </div>
-
-          <!-- Urban Analytics -->
-          <div class="glass-card p-6 rounded-2xl group cursor-pointer hover:bg-gradient-to-br hover:from-purple-50 hover:to-violet-50 dark:hover:from-purple-900/20 dark:hover:to-violet-900/20 transition-all duration-500 fade-in-up" style="animation-delay: 0.3s">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="p-3 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl text-white flex-shrink-0">
-                <i class="fas fa-city text-lg"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="font-bold text-xl text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Urban Analytics</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Spatial analysis, accessibility metrics, and computer vision for urban planning</p>
-              </div>
+          <!-- Card 3 -->
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="250">
+            <div class="glass-card-content">
+              <i class="fas fa-chart-line text-purple-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-2xl mb-4">Travel Behavior Modeling</h3>
+              <p class="text-gray-600 dark:text-gray-400">Decoding decisions: Using discrete choice models to promote cycling and optimize urban development.</p>
             </div>
-            <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>GIS & QGIS</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Accessibility Analysis</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Computer Vision</li>
-            </ul>
+            <a href="#publications" class="mt-4 inline-block text-purple-600 hover:text-purple-700 dark:text-purple-400 font-medium">See Models <i class="fas fa-arrow-right ml-1"></i></a>
           </div>
-
-          <!-- Green Routing -->
-          <div class="glass-card p-6 rounded-2xl group cursor-pointer hover:bg-gradient-to-br hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-500 fade-in-up" style="animation-delay: 0.4s">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl text-white flex-shrink-0">
-                <i class="fas fa-leaf text-lg"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="font-bold text-xl text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Green Routing</h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Multi-criteria route optimization balancing time, energy, distance, and pollution exposure</p>
-              </div>
+          <!-- Card 4 -->
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="300">
+            <div class="glass-card-content">
+              <i class="fas fa-database text-red-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-2xl mb-4">Big Data Analysis</h3>
+              <p class="text-gray-600 dark:text-gray-400">Handling large-scale spatial and temporal datasets to uncover hidden mobility patterns and trends.</p>
             </div>
-            <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Route Optimization</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>Multi-objective</li>
-              <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2 text-xs"></i>User Interfaces</li>
-            </ul>
+            <a href="#skills" class="mt-4 inline-block text-red-600 hover:text-red-700 dark:text-red-400 font-medium">View Tools <i class="fas fa-arrow-right ml-1"></i></a>
+          </div>
+          <!-- Card 5 -->
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="350">
+            <div class="glass-card-content">
+              <i class="fas fa-brain text-yellow-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-2xl mb-4">Machine Learning</h3>
+              <p class="text-gray-600 dark:text-gray-400">Applying ML for predictive modeling, from landslide prediction to identifying travel behavior drivers.</p>
+            </div>
+            <a href="#projects" class="mt-4 inline-block text-yellow-600 hover:text-yellow-700 dark:text-yellow-400 font-medium">See Projects <i class="fas fa-arrow-right ml-1"></i></a>
+          </div>
+          <!-- Card 6 -->
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="400">
+            <div class="glass-card-content">
+              <i class="fas fa-bicycle text-blue-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-2xl mb-4">Active Mobility</h3>
+              <p class="text-gray-600 dark:text-gray-400">Analyzing and promoting walking and cycling through health impact assessment and choice modeling.</p>
+            </div>
+            <a href="#publications" class="mt-4 inline-block text-blue-600 hover:text-blue-700 dark:text-blue-400 font-medium">See Papers <i class="fas fa-arrow-right ml-1"></i></a>
           </div>
         </div>
 
-        <!-- Research Timeline -->
-        <div class="max-w-5xl mx-auto">
-          <div class="publication-timeline">
-            <div class="publication-item fade-in-up" style="animation-delay: 0.5s">
-              <div class="ml-8">
-                <div class="flex items-center mb-2">
-                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">2025</span>
-                  <h4 class="ml-3 font-bold text-xl text-gray-900 dark:text-white">DRUM: Dynamic Route Planning</h4>
-                </div>
-                <p class="text-gray-600 dark:text-gray-400 mb-3">Developed web application for sustainable routing integrating real-time air quality data</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-200">Featured in The Hindu</span>
-                  <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full dark:bg-blue-900 dark:text-blue-200">Google Invited Talk</span>
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-semibold text-sm inline-flex items-center">
-                  <i class="fas fa-external-link-alt mr-1"></i>View Publication
-                </a>
-              </div>
+
+        <!-- Key Research Areas Timeline -->
+        <div class="mt-20">
+          <h3 class="text-2xl font-bold mb-12 text-center fade-in-up">Research Journey</h3>
+          <div class="publication-timeline max-w-4xl mx-auto">
+            
+            <div class="timeline-item fade-in-up">
+              <h4 class="font-bold text-xl">2026 (Future Work): Advanced Behavioral Models</h4>
+              <p class="text-gray-600 dark:text-gray-400">Work accepted at TRB 2026, using hybrid latent class models to prove "not all travellers think alike" in pollution avoidance.</p>
+            </div>
+            <div class="timeline-item fade-in-up">
+              <h4 class="font-bold text-xl">2025 (Tool Development): The DRUM App</h4>
+              <p class="text-gray-600 dark:text-gray-400">Developed and presented the DRUM web app for dynamic green routing at TRB. This work was featured in *The Hindu* and published in *TRR*.</p>
+            </div>
+            <div class="timeline-item fade-in-up">
+              <h4 class="font-bold text-xl">2024 (Synthesizing Behavior & Policy)</h4>
+              <p class="text-gray-600 dark:text-gray-400">Published major reviews and analyses in *Transport Policy* and *Urban Climate*, connecting air quality awareness to travel behavior and the impacts of Transit-Oriented Development (TOD).</p>
+            </div>
+            <div class="timeline-item fade-in-up">
+              <h4 class="font-bold text-xl">2023 (Model Deep-Dive):</h4>
+              <p class="text-gray-600 dark:text-gray-400">Presented a systematic review on air pollution & travel behavior at WCTR, Montreal. Published key work in *Journal of Transport Geography* prioritizing TOD corridors using MCDM.</p>
+            </div>
+            <div class="timeline-item fade-in-up">
+              <h4 class="font-bold text-xl">2022 (PhD Begins): Behavioral Focus</h4>
+              <p class="text-gray-600 dark:text-gray-400">Began PhD at IIT Kharagpur, shifting focus to behavioral modeling. Explored commuter perceptions of air quality in Delhi, presented at TRB.</p>
+            </div>
+            <div class="timeline-item fade-in-up">
+              <h4 class="font-bold text-xl">2019-2021 (MTech Focus): Exposure & Safety</h4>
+              <p class="text-gray-600 dark:text-gray-400">Started at IIT Roorkee, analyzing commuter exposure in different modes (*Urban Climate*) and developing methodologies for road safety blackspot identification (*TRP-D*).</p>
             </div>
 
-            <div class="publication-item fade-in-up" style="animation-delay: 0.6s">
-              <div class="ml-8">
-                <div class="flex items-center mb-2">
-                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">2024</span>
-                  <h4 class="ml-3 font-bold text-xl text-gray-900 dark:text-white">Bicycle Behavior Modeling</h4>
-                </div>
-                <p class="text-gray-600 dark:text-gray-400 mb-3">Analyzed first/last-mile bicycle usage for suburban rail access and health impacts</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full dark:bg-purple-900 dark:text-purple-200">IATBR Vienna</span>
-                  <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full dark:bg-indigo-900 dark:text-indigo-200">International Journal</span>
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-semibold text-sm inline-flex items-center">
-                  <i class="fas fa-external-link-alt mr-1"></i>View Publication
-                </a>
-              </div>
-            </div>
-
-            <div class="publication-item fade-in-up" style="animation-delay: 0.7s">
-              <div class="ml-8">
-                <div class="flex items-center mb-2">
-                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200">2023</span>
-                  <h4 class="ml-3 font-bold text-xl text-gray-900 dark:text-white">TOD Prioritization Framework</h4>
-                </div>
-                <p class="text-gray-600 dark:text-gray-400 mb-3">Multi-criteria decision framework for transit-oriented development in Indian context</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full dark:bg-orange-900 dark:text-orange-200">WSSTL Conference</span>
-                  <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full dark:bg-yellow-900 dark:text-yellow-200">Sustainable Transport</span>
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-semibold text-sm inline-flex items-center">
-                  <i class="fas fa-external-link-alt mr-1"></i>View Publication
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Publications Section -->
-    <section id="publications" class="py-24 bg-gray-50 dark:bg-gray-900/50">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16 fade-in-up">
-          <h2 class="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
-            Publications & Impact
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            10+ peer-reviewed articles | 15+ conference presentations | Featured in The Hindu
-          </p>
-        </div>
-
-        <!-- Publication Filters -->
-        <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in-up">
-          <button class="filter-btn px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm active:scale-95 focus:scale-95" data-filter="all">
-            All Publications
-          </button>
-          <button class="filter-btn px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm active:scale-95 focus:scale-95" data-filter="journal">
-            Journal Articles
-          </button>
-          <button class="filter-btn px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm active:scale-95 focus:scale-95" data-filter="conference">
-            Conferences
-          </button>
-          <button class="filter-btn px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 shadow-sm active:scale-95 focus:scale-95" data-filter="media">
-            Media Coverage
-          </button>
-        </div>
-
-        <!-- Publications Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="publications-grid">
-          <!-- Journal Article 1 -->
-          <div class="glass-card p-6 rounded-2xl publication-item fade-in-up group cursor-pointer" data-category="journal" style="animation-delay: 0.1s" data-modal="pub-1">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="flex-shrink-0 pt-1">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">TRR</div>
-              </div>
-              <div class="flex-1">
-                <h3 class="font-bold text-lg text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2 line-clamp-2">
-                  Dynamic route planning for urban green mobility: Development of a web application offering sustainable route options to commuters
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Transportation Research Record · May 2025</p>
-                <div class="flex items-center justify-between">
-                  <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-200">SAGE</span>
-                  <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 text-sm font-semibold inline-flex items-center group-hover:translate-x-1 transition-transform">
-                    <i class="fas fa-arrow-right mr-1"></i>Read
-                  </a>
-                </div>
-              </div>
+    <section id="publications" class="bg-gray-50 dark:bg-gray-800"> <!-- Removed py-24 -->
+      <!-- START of new content -->
+      <!-- Intro + Controls (from new code) -->
+      <div class="bg-gradient-to-b from-slate-100 to-transparent dark:from-slate-900/40">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-10"> <!-- Kept py-8 lg:py-10 -->
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div>
+              <!-- MODIFIED: Matched h2 style of original site -->
+              <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Publications</h2>
+              <p class="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">Verified entries from TRR, Transport Policy, DAJ, JTH, Urban Climate, COMSNETS, TRB, and more. Search, filter, group by year, and open a modal for BibTeX, links, and tags.</p>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 px-3 py-2 text-sm">
+              <span>Count</span><span class="h-5 w-px bg-slate-200 dark:bg-slate-800"></span>
+              <span id="statTotal" class="font-semibold tabular-nums">0</span>
             </div>
           </div>
-
-          <!-- Journal Article 2 -->
-          <div class="glass-card p-6 rounded-2xl publication-item fade-in-up group cursor-pointer" data-category="journal" style="animation-delay: 0.2s" data-modal="pub-2">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="flex-shrink-0 pt-1">
-                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">IJST</div>
-              </div>
-              <div class="flex-1">
-                <h3 class="font-bold text-lg text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2 line-clamp-2">
-                  Modeling bicycle choice behavior and its potential health impact: Case of first/last-mile access to suburban rail
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">International Journal of Sustainable Transportation · Oct 2025</p>
-                <div class="flex items-center justify-between">
-                  <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-200">Taylor & Francis</span>
-                  <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 text-sm font-semibold inline-flex items-center group-hover:translate-x-1 transition-transform">
-                    <i class="fas fa-arrow-right mr-1"></i>Read
-                  </a>
-                </div>
-              </div>
+          <div class="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-3">
+            <label class="lg:col-span-6 relative">
+              <input id="search" type="search" placeholder="Search title, author, venue, tag… ( / )" class="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder:text-slate-400" />
+              <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" viewBox="0 0 24 24" fill="currentColor"><path d="M21 21 15.8 15.8m-2.8 1a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg>
+            </label>
+            <div class="lg:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <select id="yearFilter" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2"><option value="">All years</option></select>
+              <select id="typeFilter" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2">
+                <option value="">All types</option><option>Journal</option><option>Conference</option><option>Media</option>
+              </select>
+              <select id="venueFilter" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2"><option value="">All venues</option></select>
+              <select id="sortBy" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2">
+                <option value="yearDesc">Sort: Year ↓</option>
+                <option value="yearAsc">Sort: Year ↑</option>
+                <option value="titleAsc">Sort: Title A→Z</option>
+              </select>
             </div>
           </div>
-
-          <!-- Conference Paper -->
-          <div class="glass-card p-6 rounded-2xl publication-item fade-in-up group cursor-pointer" data-category="conference" style="animation-delay: 0.3s" data-modal="pub-3">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="flex-shrink-0 pt-1">
-                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">TRB</div>
-              </div>
-              <div class="flex-1">
-                <h3 class="font-bold text-lg text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2 line-clamp-2">
-                  Not all travellers think alike: Segmenting travel behaviour under air pollution exposure using a hybrid latent class approach
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Transportation Research Board 2026 · Washington, DC (Accepted)</p>
-                <div class="flex items-center justify-between">
-                  <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full dark:bg-purple-900 dark:text-purple-200">Accepted</span>
-                  <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 text-sm font-semibold inline-flex items-center group-hover:translate-x-1 transition-transform">
-                    <i class="fas fa-arrow-right mr-1"></i>Details
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- More publications would go here -->
-          <!-- Journal Article 3 -->
-          <div class="glass-card p-6 rounded-2xl publication-item fade-in-up group cursor-pointer" data-category="journal" style="animation-delay: 0.4s" data-modal="pub-4">
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="flex-shrink-0 pt-1">
-                <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">STL</div>
-              </div>
-              <div class="flex-1">
-                <h3 class="font-bold text-lg text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2 line-clamp-2">
-                  A prioritization framework to identify key attributes of transit-oriented development (TOD) using MCDM approach
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Sustainable Transport and Livability · July 2025</p>
-                <div class="flex items-center justify-between">
-                  <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-200">Informa UK</span>
-                  <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 text-sm font-semibold inline-flex items-center group-hover:translate-x-1 transition-transform">
-                    <i class="fas fa-arrow-right mr-1"></i>Read
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Media Coverage -->
-          <div class="glass-card p-6 rounded-2xl publication-item fade-in-up group cursor-pointer lg:col-span-2" data-category="media" style="animation-delay: 0.5s" data-modal="pub-5">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0 pt-1">
-                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">THE HINDU</div>
-              </div>
-              <div class="flex-1">
-                <h3 class="font-bold text-lg text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors mb-2">
-                  IIT-Kgp app helps commuters pick 'greener' routes on the road
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">The Hindu · June 2025</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Feature article highlighting the DRUM web application developed by IIT Kharagpur researchers for sustainable urban routing.</p>
-                <div class="flex items-center space-x-4">
-                  <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full dark:bg-orange-900 dark:text-orange-200">Featured</span>
-                  <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 text-sm font-semibold inline-flex items-center group-hover:translate-x-1 transition-transform">
-                    <i class="fas fa-external-link-alt mr-1"></i>Read Article
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- View All Link -->
-        <div class="text-center mt-16 fade-in-up">
-          <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-primary-500/25 transform hover:scale-105 transition-all duration-300">
-            <i class="fas fa-graduation-cap mr-2"></i>
-            View Complete Google Scholar Profile
-            <i class="fas fa-external-link-alt ml-2"></i>
-          </a>
+          <div id="activeChips" class="no-scrollbar mt-3 overflow-x-auto flex gap-2"></div>
         </div>
       </div>
+
+      <!-- Results (from new code) -->
+      <main> <!-- This is semantically weird, but it's what the user provided -->
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20">
+          <div id="grouped"></div>
+          <div id="emptyState" class="hidden py-20 text-center text-slate-500 dark:text-slate-400">
+            <div class="mx-auto w-20 h-20 rounded-2xl bg-slate-100 dark:bg-slate-800 grid place-items-center mb-4">
+              <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm1 5H8v2h5V9Zm3 4H8v2h8v-2Z"/></svg>
+            </div>
+            No results. Try different filters or search terms.
+          </div>
+        </div>
+      </main>
+      <!-- END of new content -->
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-24 relative">
-      <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-green-50/30 to-teal-100/50 dark:from-gray-900/50 dark:via-emerald-900/20 dark:to-teal-900/30 pointer-events-none"></div>
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16 fade-in-up">
-          <h2 class="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
-            Featured Projects
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Building tools that transform urban mobility through data and design
-          </p>
+    <section id="projects" class="py-24 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Projects & Repositories</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto fade-in-up" data-aos-delay="100">From theory to reality: Projects driving real-world impact</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- DRUM Project -->
-          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-500 fade-in-up" style="animation-delay: 0.1s" data-modal="drum-modal">
-            <div class="relative overflow-hidden h-48 bg-gradient-to-br from-blue-500 to-cyan-600 group-hover:from-blue-600 group-hover:to-cyan-700 transition-all duration-500">
-              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-blue-700">Live Demo</span>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h3 class="text-white font-bold text-lg drop-shadow-lg">DRUM</h3>
-                <p class="text-white/90 text-sm drop-shadow-lg">Dynamic Route Planning</p>
-              </div>
+          <!-- Project 1 -->
+          <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="200">
+            <div class="glass-card-content">
+              <i class="fas fa-globe text-primary-600 text-3xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-3">DRUM Web App</h3>
+              <p class="text-gray-600 dark:text-gray-400 line-clamp-2">Dynamic route planning integrating air pollution and energy efficiency for urban commuters.</p>
             </div>
-            <div class="p-6">
-              <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">DRUM: Dynamic Route Planning for Urban Mobility</h4>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Multi-criteria routing engine optimizing for time, distance, energy consumption, and PM2.5 exposure with real-time data integration.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full dark:bg-blue-900 dark:text-blue-200">#ReactJS</span>
-                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-200">#Routing</span>
-                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full dark:bg-purple-900 dark:text-purple-200">#AQI</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500 dark:text-gray-400">
-                  <i class="fas fa-eye mr-1"></i> 2.5K+ Views
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm inline-flex items-center group-hover:translate-x-1 transition-transform">
-                  View Project <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-              </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full font-medium">Live Demo</span>
+              <a href="https://kapil2020.github.io/web" target="_blank" class="text-primary-600 hover:underline font-medium">View App <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
             </div>
           </div>
-
-          <!-- AQI Dashboard -->
-          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-500 fade-in-up" style="animation-delay: 0.2s" data-modal="aqi-modal">
-            <div class="relative overflow-hidden h-48 bg-gradient-to-br from-purple-500 to-violet-600 group-hover:from-purple-600 group-hover:to-violet-700 transition-all duration-500">
-              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-purple-700">Dashboard</span>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h3 class="text-white font-bold text-lg drop-shadow-lg">AQI Analytics</h3>
-                <p class="text-white/90 text-sm drop-shadow-lg">India Air Quality</p>
-              </div>
+          <!-- Project 2 -->
+          <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="300">
+            <div class="glass-card-content">
+              <i class="fas fa-city text-green-600 text-3xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-3">TUTEM (ADB-Funded)</h3>
+              <p class="text-gray-600 dark:text-gray-400 line-clamp-2">Technologies for urban transit enhancement and safe accessibility at IIT Kharagpur.</p>
             </div>
-            <div class="p-6">
-              <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">India Air Quality Dashboard</h4>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Interactive Streamlit dashboard for real-time AQI monitoring, forecasting, and spatial analysis across 200+ Indian cities.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full dark:bg-indigo-900 dark:text-indigo-200">#Streamlit</span>
-                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full dark:bg-yellow-900 dark:text-yellow-200">#DataViz</span>
-                <span class="px-2 py-1 bg-teal-100 text-teal-800 text-xs rounded-full dark:bg-teal-900 dark:text-teal-200">#Forecasting</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500 dark:text-gray-400">
-                  <i class="fas fa-chart-line mr-1"></i> ML-Powered
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm inline-flex items-center group-hover:translate-x-1 transition-transform">
-                  View Project <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-              </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">2024-2025</span>
+              <a href="#" class="text-primary-600 hover:underline font-medium" data-modal-trigger="proj-tutem">Details</a>
             </div>
           </div>
-
-          <!-- Walkability Score -->
-          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-500 fade-in-up" style="animation-delay: 0.3s" data-modal="walk-modal">
-            <div class="relative overflow-hidden h-48 bg-gradient-to-br from-green-500 to-emerald-600 group-hover:from-green-600 group-hover:to-emerald-700 transition-all duration-500">
-              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-green-700">Research</span>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h3 class="text-white font-bold text-lg drop-shadow-lg">PWS</h3>
-                <p class="text-white/90 text-sm drop-shadow-lg">Walkability Score</p>
-              </div>
+          <!-- Project 3 -->
+          <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="400">
+            <div class="glass-card-content">
+              <i class="fas fa-cloud text-purple-600 text-3xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-3">Air Quality Perception Delhi</h3>
+              <p class="text-gray-600 dark:text-gray-400 line-clamp-2">Commuter perceptions and ML models for behavior influence, IIT Roorkee.</p>
             </div>
-            <div class="p-6">
-              <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">Perceived Walkability Score (PWS)</h4>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Computer vision + stated preference framework for neighborhood walkability assessment at scale.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-emerald-100 text-emerald-800 text-xs rounded-full dark:bg-emerald-900 dark:text-emerald-200">#ComputerVision</span>
-                <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full dark:bg-pink-900 dark:text-pink-200">#UrbanPlanning</span>
-                <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full dark:bg-orange-900 dark:text-orange-200">#GIS</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500 dark:text-gray-400">
-                  <i class="fas fa-brain mr-1"></i> AI-Driven
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm inline-flex items-center group-hover:translate-x-1 transition-transform">
-                  View Project <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-              </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full font-medium">Published</span>
+              <a href="https://doi.org/10.1016/j.tranpol.2024.03.011" target="_blank" class="text-primary-600 hover:underline font-medium">View Paper <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
             </div>
           </div>
-
-          <!-- Travel Survey Tool -->
-          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-500 fade-in-up md:col-span-2 lg:col-span-1" style="animation-delay: 0.4s" data-modal="survey-modal">
-            <div class="relative overflow-hidden h-48 bg-gradient-to-br from-indigo-500 to-purple-600 group-hover:from-indigo-600 group-hover:to-purple-700 transition-all duration-500">
-              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-indigo-700">Web App</span>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h3 class="text-white font-bold text-lg drop-shadow-lg">Travel Survey</h3>
-                <p class="text-white/90 text-sm drop-shadow-lg">Real-time Tool</p>
-              </div>
+          <!-- Project 4 -->
+          <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="500">
+            <div class="glass-card-content">
+              <i class="fas fa-car text-orange-600 text-3xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-3">MaaS Demand Study</h3>
+              <p class="text-gray-600 dark:text-gray-400 line-clamp-2">Forecasting demand for Mobility as a Service in Indian contexts.</p>
             </div>
-            <div class="p-6">
-              <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">Real-time Travel Survey Platform</h4>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">React + D3.js platform for real-time travel behavior data collection and interactive visualization.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-violet-100 text-violet-800 text-xs rounded-full dark:bg-violet-900 dark:text-violet-200">#React</span>
-                <span class="px-2 py-1 bg-cyan-100 text-cyan-800 text-xs rounded-full dark:bg-cyan-900 dark:text-cyan-200">#D3js</span>
-                <span class="px-2 py-1 bg-teal-100 text-teal-800 text-xs rounded-full dark:bg-teal-900 dark:text-teal-200">#Realtime</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500 dark:text-gray-400">
-                  <i class="fas fa-users mr-1"></i> 500+ Respondents
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm inline-flex items-center group-hover:translate-x-1 transition-transform">
-                  View Project <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-              </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full font-medium">2022</span>
+              <a href="#" class="text-primary-600 hover:underline font-medium" data-modal-trigger="proj-maas">Report</a>
             </div>
           </div>
-
-          <!-- PM2.5 Forecasting -->
-          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-500 fade-in-up" style="animation-delay: 0.5s" data-modal="pm25-modal">
-            <div class="relative overflow-hidden h-48 bg-gradient-to-br from-red-500 to-orange-600 group-hover:from-red-600 group-hover:to-orange-700 transition-all duration-500">
-              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-red-700">ML Model</span>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h3 class="text-white font-bold text-lg drop-shadow-lg">PM2.5 Forecast</h3>
-                <p class="text-white/90 text-sm drop-shadow-lg">Next-day Prediction</p>
-              </div>
+          <!-- Project 5 -->
+          <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="600">
+            <div class="glass-card-content">
+              <i class="fas fa-bicycle text-blue-600 text-3xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-3">Bicycle Choice Modeling</h3>
+              <p class="text-gray-600 dark:text-gray-400 line-clamp-2">Health impacts of first/last-mile cycling to rail stations.</p>
             </div>
-            <div class="p-6">
-              <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">Global PM2.5 Next-day Forecasting</h4>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Ensemble machine learning with SHAP explainability for 24-hour ahead PM2.5 concentration prediction.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full dark:bg-red-900 dark:text-red-200">#MachineLearning</span>
-                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full dark:bg-yellow-900 dark:text-yellow-200">#SHAP</span>
-                <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full dark:bg-gray-800 dark:text-gray-200">#Ensemble</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500 dark:text-gray-400">
-                  <i class="fas fa-bolt mr-1"></i> 92% Accuracy
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm inline-flex items-center group-hover:translate-x-1 transition-transform">
-                  View Project <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-              </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full font-medium">2025</span>
+              <a href="https://doi.org/10.1080/15568318.2024.2384786" target="_blank" class="text-primary-600 hover:underline font-medium">View Study <i class="fas fa-external-link-alt ml-1 text-xs"></i></a>
             </div>
           </div>
-
-          <!-- TUTEM Project -->
-          <div class="glass-card rounded-2xl overflow-hidden group cursor-pointer transform hover:scale-105 transition-all duration-500 fade-in-up md:col-span-2" style="animation-delay: 0.6s" data-modal="tutem-modal">
-            <div class="relative overflow-hidden h-48 bg-gradient-to-br from-teal-500 to-cyan-600 group-hover:from-teal-600 group-hover:to-cyan-700 transition-all duration-500">
-              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-teal-700">ADB Funded</span>
-              </div>
-              <div class="absolute top-4 right-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-teal-700">IIT Kharagpur</span>
-              </div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h3 class="text-white font-bold text-lg drop-shadow-lg">TUTEM</h3>
-                <p class="text-white/90 text-sm drop-shadow-lg">Urban Transit Research</p>
-              </div>
+          <!-- Project 6 -->
+          <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="700">
+            <div class="glass-card-content">
+              <i class="fas fa-school text-teal-600 text-3xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-3">School Commute Exposure</h3>
+              <p class="text-gray-600 dark:text-gray-400 line-clamp-2">Multi-mode air pollution assessment for children in urban environments.</p>
             </div>
-            <div class="p-6">
-              <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">TUTEM: Technologies for Urban Transit</h4>
-              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Asian Development Bank funded research on enhancing urban transit accessibility and safety through technology integration.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 bg-teal-100 text-teal-800 text-xs rounded-full dark:bg-teal-900 dark:text-teal-200">#UrbanTransit</span>
-                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full dark:bg-blue-900 dark:text-blue-200">#Accessibility</span>
-                <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full dark:bg-gray-800 dark:text-gray-200">#ADB</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500 dark:text-gray-400">
-                  <i class="fas fa-university mr-1"></i> 2024-2025
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm inline-flex items-center group-hover:translate-x-1 transition-transform">
-                  View Project <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-              </div>
+            <div class="flex justify-between items-center mt-4">
+              <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full font-medium">EASTS Accepted</span>
+              <a href="#" class="text-primary-600 hover:underline font-medium" data-modal-trigger="conf-easts-2025">Abstract</a>
             </div>
           </div>
         </div>
+
+        <!-- GitHub Repos -->
+        <div class="mt-20">
+          <h3 class="text-2xl font-bold mb-12 text-center fade-in-up">Key Repositories</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            
+            <!-- Repo 1 -->
+            <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="200">
+              <div class="glass-card-content">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-bold text-xl">DRUM-Web-App</h3>
+                  <span class="flex items-center text-sm text-yellow-500"><i class="fas fa-star mr-1"></i> 1</span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 line-clamp-3">Source code for the Dynamic Route Planning for Urban Mobility (DRUM) web application, featured at TRB 2025.</p>
+              </div>
+              <a href="https://github.com/kapil2020/DRUM-Web-App" target="_blank" class="mt-4 inline-block text-primary-600 hover:text-primary-700 dark:text-primary-400 font-medium">View on GitHub <i class="fab fa-github ml-1"></i></a>
+            </div>
+            
+            <!-- Repo 2 -->
+            <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="300">
+              <div class="glass-card-content">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-bold text-xl">Landslide_Prediction</h3>
+                  <span class="flex items-center text-sm text-yellow-500"><i class="fas fa-star mr-1"></i> 1</span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 line-clamp-3">Implementation of Machine Learning models for predicting landslide susceptibility in the Himalayan region.</p>
+              </div>
+              <a href="https://github.com/kapil2020/Landslide_Prediction" target="_blank" class="mt-4 inline-block text-primary-600 hover:text-primary-700 dark:text-primary-400 font-medium">View on GitHub <i class="fab fa-github ml-1"></i></a>
+            </div>
+
+            <!-- Repo 3 -->
+            <div class="glass-card p-6 rounded-2xl fade-in-up" data-aos-delay="400">
+              <div class="glass-card-content">
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-bold text-xl">TOD-Prioritization</h3>
+                  <span class="flex items-center text-sm text-gray-500"><i class="fas fa-star mr-1"></i> 0</span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 line-clamp-3">Code for Multi-Criteria Decision Making (MCDM) analysis used to prioritize corridors for Transit-Oriented Development (TOD).</p>
+              </div>
+              <a href="https://github.com/kapil2020/TOD-Prioritization" target="_blank" class="mt-4 inline-block text-primary-600 hover:text-primary-700 dark:text-primary-400 font-medium">View on GitHub <i class="fab fa-github ml-1"></i></a>
+            </div>
+
+          </div>
+        </div>
+        
       </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-24 bg-white dark:bg-gray-900">
+    <section id="experience" class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
       <div class="container mx-auto px-6">
-        <div class="text-center mb-16 fade-in-up">
-          <h2 class="text-4xl md:text-5xl font-black mb-4 text-gray-900 dark:text-white">
-            Professional Journey
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            From research to implementation - building sustainable transportation solutions
-          </p>
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Experience</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto fade-in-up" data-aos-delay="100">From research labs to industry impact</p>
         </div>
 
-        <!-- Experience Timeline -->
-        <div class="max-w-4xl mx-auto relative">
-          <div class="absolute left-8 md:left-16 top-0 h-full w-0.5 bg-gradient-to-b from-primary-500 to-primary-700"></div>
-          
-          <!-- WRI India -->
-          <div class="relative mb-12 fade-in-up" style="animation-delay: 0.1s">
-            <div class="flex items-center w-full">
-              <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-sm absolute left-6 md:left-14 z-10 shadow-lg">WRI</div>
-              <div class="flex-1 ml-20 md:ml-28">
-                <div class="glass-card p-6 rounded-2xl">
-                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div>
-                      <h3 class="font-bold text-xl text-gray-900 dark:text-white">Researcher, Electric Mobility</h3>
-                      <p class="text-primary-600 dark:text-primary-400 font-semibold">World Resources Institute (WRI) India</p>
+        <div class="max-w-4xl mx-auto publication-timeline">
+          <!-- Timeline Items -->
+            <div class="timeline-item fade-in-up">
+              <div class="glass-card p-6 rounded-2xl">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0">
+                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
+                      <i class="fas fa-building text-white"></i>
                     </div>
-                    <span class="sm:ml-auto text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">Nov 2021 - Mar 2022</span>
                   </div>
-                  <p class="text-gray-600 dark:text-gray-400 mb-4">Conducted comprehensive analysis of in-vehicle air pollution exposure for commuters across major Indian cities, comparing inhaled doses with ambient conditions.</p>
-                  <div class="flex flex-wrap gap-2">
-                    <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full dark:bg-orange-900 dark:text-orange-200">Electric Mobility</span>
-                    <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full dark:bg-red-900 dark:text-red-200">Air Quality</span>
-                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full dark:bg-blue-900 dark:text-blue-200">Field Research</span>
+                  <div class="flex-1">
+                    <h3 class="font-bold text-xl mb-1">World Resources Institute, India</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Research Consultant | Nov 2021 – Mar 2022</p>
+                    <p class="text-gray-700 dark:text-gray-300">Analyzed inhaled dose and exposure for commuters inside vehicles vs. ambient conditions. Advised by Aparna Vijaykumar.</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- PhD Research -->
-          <div class="relative mb-12 fade-in-up" style="animation-delay: 0.2s">
-            <div class="flex items-center w-full">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm absolute left-6 md:left-14 z-10 shadow-lg">PhD</div>
-              <div class="flex-1 ml-20 md:ml-28">
-                <div class="glass-card p-6 rounded-2xl border-2 border-dashed border-blue-200 dark:border-blue-800">
-                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div>
-                      <h3 class="font-bold text-xl text-gray-900 dark:text-white">PhD Researcher</h3>
-                      <p class="text-primary-600 dark:text-primary-400 font-semibold">IIT Kharagpur | Ranbir & Chitra Gupta School</p>
+            <div class="timeline-item fade-in-up">
+              <div class="glass-card p-6 rounded-2xl">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0">
+                    <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                      <i class="fas fa-chalkboard-teacher text-white"></i>
                     </div>
-                    <span class="sm:ml-auto text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">2022 - Present</span>
                   </div>
-                  <p class="text-gray-600 dark:text-gray-400 mb-4">Research focus: Travel behavior modeling under air pollution exposure, sustainable routing algorithms, and multimodal transport accessibility.</p>
-                  <div class="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <div class="font-semibold text-gray-900 dark:text-white mb-1">Key Projects</div>
-                      <ul class="space-y-1 text-gray-600 dark:text-gray-400">
-                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i>DRUM Routing App</li>
-                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i>TUTEM (ADB)</li>
-                        <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i>Walkability Score</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <div class="font-semibold text-gray-900 dark:text-white mb-1">Achievements</div>
-                      <ul class="space-y-1 text-gray-600 dark:text-gray-400">
-                        <li class="flex items-center"><i class="fas fa-trophy text-yellow-500 mr-2"></i>Best Presentation Award</li>
-                        <li class="flex items-center"><i class="fas fa-plane text-purple-500 mr-2"></i>Leeds Research Exchange</li>
-                        <li class="flex items-center"><i class="fas fa-users text-green-500 mr-2"></i>MHRD Fellowship</li>
-                      </ul>
-                    </div>
+                  <div class="flex-1">
+                    <h3 class="font-bold text-xl mb-1">Teaching Assistantships</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">IIT Kharagpur & IIT Roorkee | 2019–2023</p>
+                    <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300 list-disc list-inside">
+                      <li>CE13001: Engineering Drawing, IIT Kharagpur (2023)</li>
+                      <li>NPTEL: Multimodal Urban Transport (2022)</li>
+                      <li>CEN 662: Intersection Design, IIT Roorkee (2020)</li>
+                      <li>CEN 562: Pavement Analysis, IIT Roorkee (2019)</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- M.Tech -->
-          <div class="relative mb-12 fade-in-up" style="animation-delay: 0.3s">
-            <div class="flex items-center w-full">
-              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm absolute left-6 md:left-14 z-10 shadow-lg">M.Tech</div>
-              <div class="flex-1 ml-20 md:ml-28">
-                <div class="glass-card p-6 rounded-2xl">
-                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div>
-                      <h3 class="font-bold text-xl text-gray-900 dark:text-white">M.Tech Transportation Engineering</h3>
-                      <p class="text-primary-600 dark:text-primary-400 font-semibold">IIT Roorkee | Thesis: Air Quality Perception</p>
+            <div class="timeline-item fade-in-up">
+              <div class="glass-card p-6 rounded-2xl">
+                <div class="flex items-start space-x-4">
+                  <div class="flex-shrink-0">
+                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+                      <i class="fas fa-microphone text-white"></i>
                     </div>
-                    <span class="sm:ml-auto text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">2019 - 2021</span>
                   </div>
-                  <p class="text-gray-600 dark:text-gray-400 mb-4">Primary research on commuter perception of air quality in Delhi, developing machine learning models to predict travel behavior modification based on AQI awareness.</p>
-                  <div class="flex flex-wrap gap-2">
-                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full dark:bg-green-900 dark:text-green-200">Machine Learning</span>
-                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full dark:bg-blue-900 dark:text-blue-200">Survey Design</span>
-                    <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full dark:bg-purple-900 dark:text-purple-200">Statistical Analysis</span>
+                  <div class="flex-1">
+                    <h3 class="font-bold text-xl mb-1">Expert Lectures & Workshops</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Knowledge Sharing | 2019–2025</p>
+                    <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300 list-disc list-inside">
+                      <li>DRUM Talk, Google India (June 2025)</li>
+                      <li>Data Visualization with Tableau, Swastik Edustart (2022)</li>
+                      <li>Transportation Data Analysis, NIT Calicut (2022)</li>
+                      <li>Quality Control in Roads, IIT Roorkee (2020)</li>
+                      <li>Concrete Mix Design, Wonder Cement (2019)</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Teaching Assistant -->
-          <div class="relative fade-in-up" style="animation-delay: 0.4s">
-            <div class="flex items-center w-full">
-              <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-sm absolute left-6 md:left-14 z-10 shadow-lg">TA</div>
-              <div class="flex-1 ml-20 md:ml-28">
-                <div class="glass-card p-6 rounded-2xl border-l-4 border-purple-500 dark:border-purple-400">
-                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                    <div>
-                      <h3 class="font-bold text-xl text-gray-900 dark:text-white">Teaching Assistant</h3>
-                      <p class="text-primary-600 dark:text-primary-400 font-semibold">IIT Kharagpur & IIT Roorkee</p>
-                    </div>
-                    <span class="sm:ml-auto text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">2019 - 2023</span>
-                  </div>
-                  <div class="grid md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Courses Supported</h4>
-                      <ul class="space-y-1 text-gray-600 dark:text-gray-400">
-                        <li><i class="fas fa-chalkboard-teacher text-purple-500 mr-2"></i>Multimodal Urban Transport</li>
-                        <li><i class="fas fa-chalkboard-teacher text-purple-500 mr-2"></i>Intersection Design</li>
-                        <li><i class="fas fa-chalkboard-teacher text-purple-500 mr-2"></i>Pavement Analysis</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Students Mentored</h4>
-                      <p class="text-gray-600 dark:text-gray-400">150+ B.Tech & M.Tech students across multiple cohorts</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <!-- Awards Section -->
+    <section id="awards" class="py-24 bg-white dark:bg-gray-800">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Awards & Achievements</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto fade-in-up" data-aos-delay="100">Recognitions for excellence in research and leadership</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="200">
+            <div class="glass-card-content">
+              <i class="fas fa-trophy text-yellow-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">Best Presentation</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Research Scholar Day, IITKGP</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="300">
+            <div class="glass-card-content">
+              <i class="fas fa-medal text-green-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">Best Poster</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">CyPhySS 2023</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="400">
+            <div class="glass-card-content">
+              <i class="fas fa-plane text-blue-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">Travel Grant</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Univ. of Leeds Exchange</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="500">
+            <div class="glass-card-content">
+              <i class="fas fa-crown text-orange-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">GATE Rank 559</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Civil Engineering, 2019</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="600">
+            <div class="glass-card-content">
+              <i class="fas fa-certificate text-purple-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">MHRD Fellowship</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">PhD Research Support</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="700">
+            <div class="glass-card-content">
+              <i class="fas fa-newspaper text-red-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">The Hindu Feature</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">DRUM App Coverage, 2025</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="800">
+            <div class="glass-card-content">
+              <i class="fas fa-graduation-cap text-indigo-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">Honors Degree</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">BTech Civil Engineering</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-2xl text-center fade-in-up" data-aos-delay="900">
+            <div class="glass-card-content">
+              <i class="fas fa-child text-teal-600 text-3xl mb-3"></i>
+              <h4 class="font-bold mb-1">Science Congress Winner</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Regional Level, DST 2014</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-gray-50 dark:bg-gray-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Skills & Expertise</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto fade-in-up" data-aos-delay="100">Technical toolkit for transportation innovation</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div class="text-center fade-in-up" data-aos-delay="200">
+            <h3 class="text-xl font-bold mb-6 flex items-center justify-center text-primary-600">
+              <i class="fas fa-code mr-2"></i> Programming
+            </h3>
+            <div class="flex flex-wrap justify-center gap-3">
+              <span class="bg-primary-100 dark:bg-primary-900/30 px-4 py-2 rounded-lg text-primary-800 dark:text-primary-200 font-medium">Python</span>
+              <span class="bg-primary-100 dark:bg-primary-900/30 px-4 py-2 rounded-lg text-primary-800 dark:text-primary-200 font-medium">R</span>
+              <span class="bg-primary-100 dark:bg-primary-900/30 px-4 py-2 rounded-lg text-primary-800 dark:text-primary-200 font-medium">JavaScript</span>
+              <span class="bg-primary-100 dark:bg-primary-900/30 px-4 py-2 rounded-lg text-primary-800 dark:text-primary-200 font-medium">ReactJS</span>
+            </div>
+          </div>
+          <div class="text-center fade-in-up" data-aos-delay="300">
+            <h3 class="text-xl font-bold mb-6 flex items-center justify-center text-green-600">
+              <i class="fas fa-chart-bar mr-2"></i> Data Analysis
+            </h3>
+            <div class="flex flex-wrap justify-center gap-3">
+              <span class="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-lg text-green-800 dark:text-green-200 font-medium">Tableau</span>
+              <span class="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-lg text-green-800 dark:text-green-200 font-medium">NLOGIT</span>
+              <span class="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-lg text-green-800 dark:text-green-200 font-medium">SPSS</span>
+              <span class="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-lg text-green-800 dark:text-green-200 font-medium">QGIS</span>
+              <span class="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-lg text-green-800 dark:text-green-200 font-medium">MiniTab</span>
+            </div>
+          </div>
+          <div class="text-center fade-in-up" data-aos-delay="400">
+            <h3 class="text-xl font-bold mb-6 flex items-center justify-center text-purple-600">
+              <i class="fas fa-database mr-2"></i> Tools & Databases
+            </h3>
+            <div class="flex flex-wrap justify-center gap-3">
+              <span class="bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-lg text-purple-800 dark:text-purple-200 font-medium">MySQL</span>
+              <span class="bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-lg text-purple-800 dark:text-purple-200 font-medium">MongoDB</span>
+              <span class="bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-lg text-purple-800 dark:text-purple-200 font-medium">LaTeX</span>
+              <span class="bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-lg text-purple-800 dark:text-purple-200 font-medium">JabRef</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peer Review & Memberships -->
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 fade-in-up" data-aos-delay="500">
+          <div>
+            <h3 class="text-2xl font-bold mb-6 text-center">Peer Reviewer</h3>
+            <div class="flex flex-wrap justify-center gap-3 text-sm">
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-check mr-1.5 text-primary-600"></i>Transp. Res. Part A</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-check mr-1.5 text-primary-600"></i>Transp. Res. Part D</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-check mr-1.5 text-primary-600"></i>Transport Policy</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-check mr-1.5 text-primary-600"></i>RTBM</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-check mr-1.5 text-primary-600"></i>TRR (SAGE)</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-check mr-1.5 text-primary-600"></i>Transp. Dev. Econ.</div>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold mb-6 text-center">Professional Memberships</h3>
+            <div class="flex flex-wrap justify-center gap-3 text-sm">
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-users mr-1.5 text-blue-600"></i>ASCE T&DI</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-users mr-1.5 text-blue-600"></i>TRG India</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-users mr-1.5 text-blue-600"></i>WCTR Society</div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg font-medium"><i class="fas fa-users mr-1.5 text-blue-600"></i>IATBR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="py-24 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Leadership & Community</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto fade-in-up" data-aos-delay="100">Organizing for sustainable infrastructure futures</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="200">
+            <div class="glass-card-content">
+              <h3 class="text-xl font-bold mb-4 flex items-center text-orange-600">
+                <i class="fas fa-handshake mr-2"></i> Positions of Responsibility
+              </h3>
+              <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                <li class="flex items-start"><i class="fas fa-arrow-right text-orange-600 mr-2 w-5 mt-1.5 flex-shrink-0"></i><span>Overall Coordinator, 2nd IBSR Conference 2024, IITKGP</span></li>
+                <li class="flex items-start"><i class="fas fa-arrow-right text-orange-600 mr-2 w-5 mt-1.5 flex-shrink-0"></i><span>Overall Coordinator, IBSR Conference 2023, IITKGP</span></li>
+                <li class="flex items-start"><i class="fas fa-arrow-right text-orange-600 mr-2 w-5 mt-1.5 flex-shrink-0"></i><span>Dept. Social Media Head, IITKGP (2022-23)</span></li>
+                <li class="flex items-start"><i class="fas fa-arrow-right text-orange-600 mr-2 w-5 mt-1.5 flex-shrink-0"></i><span>Placement Rep., IIT Roorkee (2020-21)</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="glass-card p-8 rounded-2xl fade-in-up" data-aos-delay="300">
+            <div class="glass-card-content">
+              <h3 class="text-xl font-bold mb-4 flex items-center text-indigo-600">
+                <i class="fas fa-calendar-check mr-2"></i> Conferences Organized
+              </h3>
+              <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+                <li class="flex items-start"><i class="fas fa-arrow-right text-indigo-600 mr-2 w-5 mt-1.5 flex-shrink-0"></i><span>Coordinator, IBSR 2023: Sustainable Societies, IITKGP</span></li>
+                <li class="flex items-start"><i class="fas fa-arrow-right text-indigo-600 mr-2 w-5 mt-1.5 flex-shrink-0"></i><span>Coordinator, 2nd IBSR 2024: Resilient Infrastructure, Kolkata</span></li>
+              </ul>
             </div>
           </div>
         </div>
@@ -1246,375 +1130,132 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-24 relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-50 via-blue-50 to-indigo-100 dark:from-primary-900/50 dark:via-gray-900 dark:to-indigo-900/50"></div>
       <div class="container mx-auto px-6 relative z-10">
-        <div class="max-w-4xl mx-auto text-center fade-in-up">
-          <h2 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 dark:text-white">
-            Let's Create Impact Together
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            I'm actively seeking postdoctoral opportunities for 2026 and welcome collaborations on sustainable mobility research. 
-            Let's discuss how we can work together to build cleaner, more equitable cities.
-          </p>
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Get In Touch</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto fade-in-up" data-aos-delay="100">I'm actively seeking postdoctoral collaborations. Let's discuss opportunities via email, phone, or LinkedIn.</p>
+        </div>
 
-          <!-- Contact Cards -->
-          <div class="grid md:grid-cols-3 gap-8 mb-12">
-            <!-- Email -->
-            <div class="glass-card p-6 rounded-2xl text-center group hover:bg-gradient-to-br hover:from-primary-50 hover:to-blue-50 dark:hover:from-primary-900/20 dark:hover:to-blue-900/20 transition-all duration-300">
-              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <i class="fas fa-envelope text-xl"></i>
-              </div>
-              <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Email</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 break-all">kapil.meena@kgpian.iitkgp.ac.in</p>
-              <a href="mailto:kapil.meena@kgpian.iitkgp.ac.in" class="inline-flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                <i class="fas fa-paper-plane mr-2"></i>Send Message
-              </a>
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+          <div class="glass-card p-8 rounded-2xl text-center fade-in-up" data-aos-delay="200">
+            <div class="glass-card-content">
+              <i class="fas fa-envelope text-primary-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-2">Email</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-4 break-all">kapil.meena@kgpian.iitkgp.ac.in</p>
             </div>
-
-            <!-- Institution -->
-            <div class="glass-card p-6 rounded-2xl text-center group hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-300">
-              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <i class="fas fa-university text-xl"></i>
-              </div>
-              <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Institution</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                MUST Lab<br>
-                IIT Kharagpur<br>
-                West Bengal, India
-              </p>
-              <a href="https://www.iitkgp.ac.in" target="_blank" class="inline-flex items-center text-green-600 hover:text-green-700 dark:text-green-400 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                <i class="fas fa-external-link-alt mr-2"></i>Visit IITKGP
-              </a>
-            </div>
-
-            <!-- Availability -->
-            <div class="glass-card p-6 rounded-2xl text-center group hover:bg-gradient-to-br hover:from-purple-50 hover:to-violet-50 dark:hover:from-purple-900/20 dark:hover:to-violet-900/20 transition-all duration-300 border-2 border-dashed border-purple-200 dark:border-purple-800">
-              <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <i class="fas fa-calendar-check text-xl"></i>
-              </div>
-              <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2">Availability</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Postdoctoral Positions<br>
-                <span class="text-purple-600 dark:text-purple-400 font-semibold">2026 Onwards</span>
-              </p>
-              <a href="#contact-form" class="inline-flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                <i class="fas fa-comments mr-2"></i>Discuss Opportunities
-              </a>
-            </div>
+            <a href="mailto:kapil.meena@kgpian.iitkgp.ac.in" class="text-primary-600 hover:underline font-medium mt-4">Send Message</a>
           </div>
-
-          <!-- Contact Form -->
-          <div class="glass-card p-8 rounded-2xl max-w-2xl mx-auto fade-in-up" style="animation-delay: 0.2s">
-            <form id="contact-form" class="space-y-6">
-              <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
-                  <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200" placeholder="Your name">
-                </div>
-                <div>
-                  <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
-                  <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200" placeholder="your.email@example.com">
-                </div>
-              </div>
-              
-              <div>
-                <label for="subject" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Subject</label>
-                <select id="subject" name="subject" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
-                  <option value="">Select a subject</option>
-                  <option value="collaboration">Research Collaboration</option>
-                  <option value="postdoc">Postdoctoral Opportunity</option>
-                  <option value="consulting">Consulting Project</option>
-                  <option value="speaking">Speaking Engagement</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none" placeholder="Tell me about your project or collaboration idea..."></textarea>
-              </div>
-
-              <div class="flex justify-center">
-                <button type="submit" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-primary-500/25 transform hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary-500/50">
-                  <i class="fas fa-paper-plane mr-3 group-hover:translate-x-1 transition-transform"></i>
-                  Send Message
-                  <div class="ml-2 w-0 h-0.5 bg-white opacity-0 group-hover:opacity-100 group-hover:w-16 transition-all duration-300"></div>
-                </button>
-              </div>
-            </form>
+          <div class="glass-card p-8 rounded-2xl text-center fade-in-up" data-aos-delay="300">
+            <div class="glass-card-content">
+              <i class="fas fa-phone text-green-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-2">Phone</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">+91 8875385597</p>
+            </div>
+            <a href="tel:+918875385597" class="text-green-600 hover:underline font-medium mt-4">Call Now</a>
           </div>
-
-          <!-- Quick Links -->
-          <div class="grid md:grid-cols-3 gap-6 mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <div class="text-center">
-              <a href="kp_cv_nov.pdf" class="inline-flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm group" download>
-                <i class="fas fa-file-pdf mr-2 text-lg group-hover:rotate-12 transition-transform"></i>
-                Download Full CV
-              </a>
+          <div class="glass-card p-8 rounded-2xl text-center fade-in-up" data-aos-delay="400">
+            <div class="glass-card-content">
+              <i class="fab fa-linkedin text-blue-600 text-4xl mb-4"></i>
+              <h3 class="font-bold text-xl mb-2">LinkedIn</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">kapil-meena-2020</p>
             </div>
-            <div class="text-center">
-              <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" class="inline-flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm group" target="_blank">
-                <i class="fab fa-google-scholar mr-2 text-lg group-hover:-translate-y-1 transition-transform"></i>
-                Google Scholar Profile
-              </a>
-            </div>
-            <div class="text-center">
-              <a href="https://github.com/kapil2020" class="inline-flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold text-sm group" target="_blank">
-                <i class="fab fa-github mr-2 text-lg group-hover:animate-pulse"></i>
-                View GitHub Repositories
-              </a>
-            </div>
+            <a href="https://www.linkedin.com/in/kapil-meena-2020" target="_blank" class="text-blue-600 hover:underline font-medium mt-4">Connect</a>
           </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="flex justify-center space-x-8 mt-16 fade-in-up" data-aos-delay="600">
+          <a href="https://scholar.google.com/citations?user=5jIAPTEAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" class="text-2xl text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition transform hover:scale-125">
+            <i class="fab fa-google-scholar"></i>
+          </a>
+          <a href="https://github.com/kapil2020" target="_blank" aria-label="GitHub" class="text-2xl text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition transform hover:scale-125">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/kapil-meena-2020" target="_blank" aria-label="LinkedIn" class="text-2xl text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition transform hover:scale-125">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com/kapilmeena2020" target="_blank" aria-label="Twitter" class="text-2xl text-gray-700 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300 transition transform hover:scale-125">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://sites.google.com/view/kapil-lab/home" target="_blank" aria-label="Lab Site" class="text-2xl text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition transform hover:scale-125">
+            <i class="fas fa-home"></i>
+          </a>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- START: NEW MODAL HTML -->
+  <div id="modal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-black/50" id="modalBackdrop"></div>
+    <div class="absolute inset-0 grid place-items-center p-4">
+      <div class="w-full max-w-3xl rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-soft">
+        <div class="flex items-start justify-between p-5 border-b border-slate-200 dark:border-slate-800">
+          <h3 id="modalTitle" class="text-lg font-semibold"></h3>
+          <button id="modalClose" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 4.99 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6 5.6-5.6-1.4-1.4-5.6 5.6L6.4 4.99Z"/></svg>
+          </button>
+        </div>
+        <div class="p-5 space-y-4">
+          <div id="modalMeta" class="text-sm text-slate-600 dark:text-slate-400"></div>
+          <p id="modalAbstract" class="text-slate-700 dark:text-slate-300"></p>
+          <div class="flex flex-wrap gap-2" id="modalTags"></div>
+          <div class="flex flex-wrap items-center gap-2" id="modalActions"></div>
+          <div class="rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-3">
+            <div class="flex items-center justify-between">
+              <div class="text-sm font-medium">BibTeX</div>
+              <button id="copyBib" class="text-xs rounded-lg px-2 py-1 bg-indigo-600 text-white hover:bg-indigo-500">Copy</button>
+            </div>
+            <pre id="modalBib" class="mt-2 overflow-auto text-xs leading-relaxed"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END: NEW MODAL HTML -->
+  
+  <!-- OLD MODAL HTML IS DELETED -->
+
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-primary-900/20 to-gray-900 opacity-50"></div>
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="grid md:grid-cols-4 gap-8 mb-8">
-        <div class="md:col-span-2">
-          <div class="flex items-center space-x-3 mb-4">
-            <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center">
-              <i class="fas fa-route text-white"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-xl">Kapil Meena</h3>
-              <p class="text-gray-400 text-sm">Sustainable Mobility Researcher</p>
-            </div>
-          </div>
-          <p class="text-gray-400 mb-4 leading-relaxed">Building data-driven solutions for cleaner, safer urban transportation through advanced analytics and behavioral insights.</p>
-          <div class="flex space-x-4">
-            <a href="https://twitter.com/kapilmeena" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" target="_blank">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://linkedin.com/in/kapil-meena-11b02b157" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" target="_blank">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/kapil2020" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-600 transition-colors" target="_blank">
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div>
-          <h4 class="font-semibold mb-4">Quick Links</h4>
-          <ul class="space-y-2 text-gray-400 text-sm">
-            <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
-            <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
-            <li><a href="#research" class="hover:text-white transition-colors">Research</a></li>
-            <li><a href="#projects" class="hover:text-white transition-colors">Projects</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h4 class="font-semibold mb-4">Research Areas</h4>
-          <ul class="space-y-2 text-gray-400 text-sm">
-            <li><a href="#" class="hover:text-white transition-colors">Travel Behavior</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Air Quality</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Sustainable Mobility</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Urban Analytics</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-        <p>&copy; 2025 Kapil Meena. Built with ❤️ using modern web technologies. | All rights reserved.</p>
-        <p class="mt-2">Last updated: November 2025</p>
-      </div>
+  <footer class="py-12 bg-gray-900 text-white text-center">
+    <div class="container mx-auto px-6">
+      <p class="mb-4">&copy; 2025 Kapil Kumar Meena. Built with <i class="fas fa-heart text-red-500"></i> for sustainable impact.</p>
+      <p class="text-sm text-gray-400">Actively seeking postdoctoral opportunities in sustainable mobility research.</p>
     </div>
   </footer>
 
-  <!-- Modal Container -->
-  <div id="modal-container" class="fixed inset-0 z-50 hidden pointer-events-none overflow-y-auto">
-    <!-- Project Modals -->
-    <div id="drum-modal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-4" aria-hidden="true">
-      <div class="modal-overlay fixed inset-0 bg-black/60 backdrop-blur-sm" data-modal-close></div>
-      <div class="modal-content relative max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] w-full transform transition-all duration-300 scale-95 opacity-0" role="dialog" aria-modal="true">
-        <button class="modal-close absolute top-4 right-4 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors" data-modal-close aria-label="Close modal">
-          <i class="fas fa-times text-xl"></i>
-        </button>
-        <div class="p-0 h-full flex flex-col">
-          <div class="h-64 lg:h-80 bg-gradient-to-br from-blue-500 to-cyan-600 relative overflow-hidden">
-            <div class="absolute inset-0 bg-black/20"></div>
-            <div class="absolute top-4 left-4 text-white">
-              <h2 class="text-2xl font-bold">DRUM</h2>
-              <p class="text-white/90">Dynamic Route Planning for Urban Mobility</p>
-            </div>
-            <div class="absolute bottom-4 right-4 space-y-2">
-              <a href="#" class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors">
-                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-              </a>
-              <a href="#" class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors">
-                <i class="fab fa-github mr-2"></i>GitHub
-              </a>
-            </div>
-          </div>
-          <div class="p-8 flex-1 overflow-y-auto">
-            <div class="space-y-6">
-              <div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Project Overview</h3>
-                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  DRUM is a comprehensive web application that revolutionizes urban route planning by incorporating environmental and sustainability metrics. Unlike traditional navigation apps that optimize solely for time or distance, DRUM provides four distinct routing modes:
-                </p>
-                <div class="grid md:grid-cols-2 gap-4 mt-4">
-                  <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-                    <h4 class="font-semibold text-blue-800 dark:text-blue-200 mb-2"><i class="fas fa-lungs mr-2"></i>LEAP Mode</h4>
-                    <p class="text-sm text-blue-700 dark:text-blue-300">Least Exposure Airway Path - Minimizes PM2.5 exposure</p>
-                  </div>
-                  <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
-                    <h4 class="font-semibold text-green-800 dark:text-green-200 mb-2"><i class="fas fa-bolt mr-2"></i>LECR Mode</h4>
-                    <p class="text-sm text-green-700 dark:text-green-300">Least Energy Consumption Route - Optimizes energy use</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Technical Implementation</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 class="font-semibold mb-2">Frontend</h4>
-                    <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                      <li><i class="fas fa-check text-green-500 mr-2"></i>React.js with TypeScript</li>
-                      <li><i class="fas fa-check text-green-500 mr-2"></i>Leaflet.js for mapping</li>
-                      <li><i class="fas fa-check text-green-500 mr-2"></i>Tailwind CSS</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold mb-2">Backend</h4>
-                    <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                      <li><i class="fas fa-check text-green-500 mr-2"></i>Python Flask API</li>
-                      <li><i class="fas fa-check text-green-500 mr-2"></i>PostgreSQL with PostGIS</li>
-                      <li><i class="fas fa-check text-green-500 mr-2"></i>Redis caching</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-600 to-blue-600 z-50" style="width: 0%; transition: width 0.1s ease-out;"></div>
+  
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-primary-600 text-white shadow-lg flex items-center justify-center opacity-0 transform translate-y-4 transition-all duration-300 hover:bg-primary-700 hover:scale-110">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-              <div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Impact & Recognition</h3>
-                <div class="grid md:grid-cols-3 gap-4 mb-4">
-                  <div class="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                    <div class="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">15K+</div>
-                    <div class="text-xs text-green-700 dark:text-green-300">Users Reached</div>
-                  </div>
-                  <div class="text-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                    <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">5★</div>
-                    <div class="text-xs text-blue-700 dark:text-blue-300">User Rating</div>
-                  </div>
-                  <div class="text-center p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                    <div class="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-1">Featured</div>
-                    <div class="text-xs text-purple-700 dark:text-purple-300">The Hindu</div>
-                  </div>
-                </div>
-                <p class="text-gray-600 dark:text-gray-400 text-sm italic">"IIT-Kgp app helps commuters pick 'greener' routes" - The Hindu, June 2025</p>
-              </div>
-
-              <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
-                <div class="flex flex-wrap gap-2 justify-center">
-                  <a href="#" class="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors">
-                    <i class="fas fa-external-link-alt mr-2"></i>Live Application
-                  </a>
-                  <a href="#" class="inline-flex items-center px-4 py-2 border-2 border-primary-600 text-primary-600 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition-colors">
-                    <i class="fab fa-github mr-2"></i>View Code
-                  </a>
-                  <a href="#" class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                    <i class="fas fa-file-alt mr-2"></i>Research Paper
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add more modals for other projects as needed -->
-  </div>
-
-  <!-- JavaScript -->
   <script>
-    // Global configuration
-    const config = {
-      animations: {
-        duration: 800,
-        easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
-      },
-      breakpoints: {
-        mobile: 640,
-        tablet: 768,
-        laptop: 1024,
-        desktop: 1280
-      }
-    };
-
-    // DOM ready
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize all components
-      initLoadingScreen();
-      initThemeToggle();
-      initMobileMenu();
-      initScrollAnimations();
-      initSmoothScrolling();
-      initPublicationFilters();
-      initModalSystem();
-      initCounterAnimations();
-      initCursorFollower();
-      initFormHandler();
-      initScrollProgress();
-      initIntersectionObserver();
-    });
-
-    // Loading Screen
-    function initLoadingScreen() {
-      const loadingScreen = document.getElementById('loading-screen');
-      const loaderDuration = 2000;
-
-      setTimeout(() => {
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-          loadingScreen.style.display = 'none';
-          document.body.classList.remove('overflow-hidden');
-          // Trigger initial scroll animations
-          window.dispatchEvent(new Event('scroll'));
-        }, 500);
-      }, loaderDuration);
-    }
-
     // Theme Toggle
     function initThemeToggle() {
+      const html = document.documentElement;
       const themeToggle = document.getElementById('theme-toggle');
       const themeIcon = document.getElementById('theme-icon');
-      const html = document.documentElement;
 
-      // Check for saved theme or default to system preference
-      const savedTheme = localStorage.getItem('theme') || 
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      
-      html.setAttribute('data-theme', savedTheme);
-      themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      const setTema = (theme) => {
+        html.classList.toggle('dark', theme === 'dark');
+        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        localStorage.setItem('theme', theme);
+      };
+
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      setTema(savedTheme);
 
       themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', newTheme);
-        themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        localStorage.setItem('theme', newTheme);
-        
-        // Animate theme transition
-        document.body.classList.add('transition-colors');
-        setTimeout(() => document.body.classList.remove('transition-colors'), 300);
+        setTema(html.classList.contains('dark') ? 'light' : 'dark');
       });
 
-      // Listen for system theme changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
-          const systemTheme = e.matches ? 'dark' : 'light';
-          html.setAttribute('data-theme', systemTheme);
-          themeIcon.className = systemTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+          setTema(e.matches ? 'dark' : 'light');
         }
       });
     }
@@ -1625,292 +1266,199 @@
       const mobileMenu = document.getElementById('mobile-menu');
       const menuIcon = mobileMenuBtn.querySelector('i');
 
-      mobileMenuBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('hidden');
+      const toggleMenu = (open) => {
+        const isOpen = open !== undefined ? open : mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', !isOpen);
         mobileMenu.style.maxHeight = isOpen ? '500px' : '0';
         menuIcon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
-        
-        // Prevent body scroll when menu is open
         document.body.style.overflow = isOpen ? 'hidden' : '';
+      };
+      
+      mobileMenuBtn.addEventListener('click', () => toggleMenu());
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
       });
 
-      // Close menu when clicking on links
-      document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          mobileMenu.style.maxHeight = '0';
-          menuIcon.className = 'fas fa-bars';
-          document.body.style.overflow = '';
-        });
-      });
-
-      // Close menu on escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-          mobileMenu.style.maxHeight = '0';
-          menuIcon.className = 'fas fa-bars';
-          document.body.style.overflow = '';
+          toggleMenu(false);
         }
       });
     }
 
     // Smooth Scrolling and Active Nav
     function initSmoothScrolling() {
-      // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
+          const targetId = this.getAttribute('href');
+          const target = document.querySelector(targetId);
           if (target) {
-            const offsetTop = target.offsetTop - 80; // Account for fixed header
+            const offsetTop = target.offsetTop - 80; // Header offset
             window.scrollTo({
               top: offsetTop,
               behavior: 'smooth'
             });
+            // Update URL hash without jumping
+            if (history.pushState) {
+              history.pushState(null, null, targetId);
+            } else {
+              window.location.hash = targetId;
+            }
           }
         });
       });
 
-      // Active navigation highlighting
-      let currentSection = '';
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
-
-      const sectionObserver = new IntersectionObserver((entries) => {
+      
+      const observer = new IntersectionObserver((entries) => {
+        let currentSection = '';
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             currentSection = entry.target.id;
           }
         });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-          }
-        });
+        
+        if (currentSection) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSection}`) {
+              link.classList.add('active');
+            }
+          });
+        }
       }, { 
         threshold: 0.3,
-        rootMargin: '-20% 0px -60% 0px'
+        rootMargin: '-80px 0px -60% 0px' // Adjust rootMargin based on header height
       });
 
-      sections.forEach(section => {
-        sectionObserver.observe(section);
+      sections.forEach(section => observer.observe(section));
+    }
+
+    // Scroll Effects (Header, Progress, BackToTop)
+    function initScrollEffects() {
+      const header = document.querySelector('header');
+      const navbar = document.getElementById('navbar');
+      const progressBar = document.getElementById('scroll-progress');
+      const backToTopBtn = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        
+        // Header
+        if (scrollY > 50) {
+          header.classList.add('glass', 'shadow-lg');
+          navbar.classList.add('py-3');
+          navbar.classList.remove('py-4');
+        } else {
+          header.classList.remove('glass', 'shadow-lg');
+          navbar.classList.add('py-4');
+          navbar.classList.remove('py-3');
+        }
+        
+        // Scroll Progress
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollY / docHeight) * 100;
+        progressBar.style.width = `${scrollPercent}%`;
+        
+        // Back to Top
+        if (scrollY > 300) {
+          backToTopBtn.classList.remove('opacity-0', 'translate-y-4');
+          backToTopBtn.classList.add('opacity-100', 'translate-y-0');
+        } else {
+          backToTopBtn.classList.add('opacity-0', 'translate-y-4');
+          backToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+        }
+      });
+      
+      backToTopBtn.addEventListener('click', () => {
+         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
 
-    // Scroll Animations
+    // Scroll Fade-in Animations
     function initScrollAnimations() {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Stagger animation for multiple elements
-            const delay = index * 100;
-            setTimeout(() => {
-              entry.target.classList.add('visible');
-              entry.target.style.animationDelay = `${delay}ms`;
-            }, delay);
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         });
-      }, observerOptions);
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
 
-      // Observe all fade-in-up elements
       document.querySelectorAll('.fade-in-up').forEach(el => {
         observer.observe(el);
       });
-
-      // Navbar background on scroll
-      window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-          header.classList.add('backdrop-blur-lg', 'bg-white/80', 'dark:bg-gray-900/80');
-          header.classList.remove('bg-transparent');
-        } else {
-          header.classList.remove('backdrop-blur-lg', 'bg-white/80', 'dark:bg-gray-900/80');
-          header.classList.add('bg-transparent');
-        }
-      });
     }
 
-    // Publication Filters
-    function initPublicationFilters() {
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const publicationItems = document.querySelectorAll('.publication-item');
-
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const filter = button.dataset.filter;
-
-          // Update active button
-          filterButtons.forEach(btn => btn.classList.remove('bg-primary-600', 'text-white', 'border-primary-600'));
-          button.classList.add('bg-primary-600', 'text-white', 'border-primary-600');
-
-          // Filter publications
-          publicationItems.forEach(item => {
-            const category = item.dataset.category;
-            if (filter === 'all' || category === filter) {
-              item.style.opacity = '1';
-              item.style.transform = 'translateY(0)';
-              item.style.pointerEvents = 'auto';
-            } else {
-              item.style.opacity = '0';
-              item.style.transform = 'translateY(20px)';
-              item.style.pointerEvents = 'none';
-            }
-          });
-
-          // Stagger animation for visible items
-          const visibleItems = document.querySelectorAll('.publication-item[style*="opacity: 1"]');
-          visibleItems.forEach((item, index) => {
-            setTimeout(() => {
-              item.style.transition = 'all 0.6s ease';
-            }, index * 100);
-          });
-        });
-      });
-    }
-
-    // Modal System
-    function initModalSystem() {
-      const modalContainer = document.getElementById('modal-container');
-      const openTriggers = document.querySelectorAll('[data-modal]');
-      const closeTriggers = document.querySelectorAll('[data-modal-close]');
-
-      // Open modals
-      openTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          const modalId = trigger.dataset.modal;
-          const modal = document.getElementById(modalId);
-          if (modal) {
-            openModal(modal);
-          }
-        });
-      });
-
-      // Close modals
-      closeTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const modal = trigger.closest('.modal');
-          if (modal) {
-            closeModal(modal);
-          }
-        });
-      });
-
-      // Close on overlay click
-      modalContainer.addEventListener('click', (e) => {
-        if (e.target === modalContainer) {
-          const openModal = modalContainer.querySelector('.modal:not(.hidden)');
-          if (openModal) {
-            closeModal(openModal);
-          }
-        }
-      });
-
-      // Close on Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          const openModal = modalContainer.querySelector('.modal:not(.hidden)');
-          if (openModal) {
-            closeModal(openModal);
-          }
-        }
-      });
-
-      function openModal(modal) {
-        modalContainer.classList.remove('hidden');
-        modal.classList.remove('hidden', 'scale-95', 'opacity-0');
-        modal.classList.add('scale-100', 'opacity-100');
-        document.body.style.overflow = 'hidden';
-        
-        // Focus management
-        const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        const firstElement = focusableElements[0];
-        firstElement?.focus();
-      }
-
-      function closeModal(modal) {
-        modal.classList.remove('scale-100', 'opacity-100');
-        modal.classList.add('scale-95', 'opacity-0');
-        
-        setTimeout(() => {
-          modal.classList.add('hidden');
-          modalContainer.classList.add('hidden');
-          document.body.style.overflow = '';
-        }, 300);
-
-        // Return focus to trigger
-        const openTrigger = document.querySelector(`[data-modal="${modal.id}"]`);
-        openTrigger?.focus();
-      }
-    }
+    // --- OLD initPublicationFilters DELETED ---
+    // --- OLD initModalSystem DELETED ---
 
     // Counter Animations
     function initCounterAnimations() {
       const counters = document.querySelectorAll('[data-target]');
-      const counterObserver = new IntersectionObserver((entries) => {
+      const speed = 200; // Lower is faster
+
+      const animateCounter = (counter) => {
+        const target = +counter.dataset.target;
+        const duration = 2000; // 2 seconds
+        let start = 0;
+        const startTime = Date.now();
+
+        const update = () => {
+          const elapsed = Date.now() - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          const current = Math.floor(progress * target);
+          
+          counter.innerText = current;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        requestAnimationFrame(update);
+      };
+      
+      const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const counter = entry.target;
-            const target = parseInt(counter.dataset.target);
-            const duration = 2000;
-            let start = 0;
-            const startTime = Date.now();
-
-            const updateCounter = () => {
-              const elapsed = Date.now() - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              const current = Math.floor(progress * target);
-
-              counter.textContent = current;
-              if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-              } else {
-                counter.textContent = target;
-              }
-            };
-
-            updateCounter();
-            counterObserver.unobserve(entry.target);
+            animateCounter(entry.target);
+            obs.unobserve(entry.target);
           }
         });
       }, { threshold: 0.7 });
 
       counters.forEach(counter => {
-        counterObserver.observe(counter);
+        counter.innerText = '0'; // Start at 0
+        observer.observe(counter);
       });
     }
 
     // Cursor Follower
     function initCursorFollower() {
       const cursor = document.getElementById('cursor');
-      
       if (!cursor || window.innerWidth < 1024) {
         cursor?.classList.add('hidden');
         return;
       }
 
-      let mouseX = 0;
-      let mouseY = 0;
-      let cursorX = 0;
-      let cursorY = 0;
+      let mouseX = -100, mouseY = -100;
+      let cursorX = -100, cursorY = -100;
       const speed = 0.1;
 
-      const updateCursor = () => {
+      const animate = () => {
         cursorX += (mouseX - cursorX) * speed;
         cursorY += (mouseY - cursorY) * speed;
-        
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        
-        requestAnimationFrame(updateCursor);
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        requestAnimationFrame(animate);
       };
 
       document.addEventListener('mousemove', (e) => {
@@ -1918,189 +1466,308 @@
         mouseY = e.clientY;
       });
 
-      // Enhanced cursor interactions
-      document.querySelectorAll('a, button, [role="button"]').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          cursor.classList.add('scale-150');
-        });
-        el.addEventListener('mouseleave', () => {
-          cursor.classList.remove('scale-150');
-        });
+      document.querySelectorAll('a, button, [data-modal-trigger], input, textarea, .filter-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1.5)`);
+        el.addEventListener('mouseleave', () => cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1)`);
       });
 
-      updateCursor();
+      animate();
     }
-
-    // Form Handler
-    function initFormHandler() {
-      const form = document.getElementById('contact-form');
-      const submitBtn = form?.querySelector('button[type="submit"]');
-
-      form?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        if (submitBtn) {
-          const originalText = submitBtn.innerHTML;
-          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
-          submitBtn.disabled = true;
-        }
-
-        try {
-          // Simulate form submission
-          await new Promise(resolve => setTimeout(resolve, 1500));
-          
-          // Here you would typically send the form data to your backend
-          const formData = new FormData(form);
-          console.log('Form submitted:', Object.fromEntries(formData));
-
-          // Show success message
-          showNotification('Message sent successfully! I\'ll get back to you within 24 hours.', 'success');
-          
-          // Reset form
-          form.reset();
-        } catch (error) {
-          console.error('Form submission error:', error);
-          showNotification('Oops! Something went wrong. Please try again.', 'error');
-        } finally {
-          if (submitBtn) {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-          }
-        }
-      });
-    }
-
-    // Notification System
-    function showNotification(message, type = 'info') {
-      const notification = document.createElement('div');
-      notification.className = `fixed top-4 right-4 z-50 p-4 rounded-xl shadow-lg transform translate-x-full transition-transform duration-300 ${
-        type === 'success' ? 'bg-green-500 text-white' :
-        type === 'error' ? 'bg-red-500 text-white' :
-        'bg-blue-500 text-white'
-      }`;
-      notification.innerHTML = `
-        <div class="flex items-center">
-          <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'} mr-3"></i>
-          <div>${message}</div>
-        </div>
-      `;
-      
-      document.body.appendChild(notification);
-      
-      // Animate in
-      setTimeout(() => notification.classList.remove('translate-x-full'), 100);
-      
-      // Auto remove
-      setTimeout(() => {
-        notification.classList.add('translate-x-full');
-        setTimeout(() => notification.remove(), 300);
-      }, 4000);
-    }
-
-    // Scroll Progress
-    function initScrollProgress() {
-      const progressBar = document.createElement('div');
-      progressBar.className = 'fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-600 to-blue-600 z-50 transform scale-x-0 origin-left transition-transform duration-300';
-      progressBar.style.backgroundSize = '200% 100%';
-      progressBar.style.animation = 'gradientShift 2s ease-in-out infinite';
-      document.body.appendChild(progressBar);
-
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = scrollTop / docHeight;
-        progressBar.style.transform = `scaleX(${scrollPercent})`;
-      });
-    }
-
-    // Intersection Observer for advanced animations
-    function initIntersectionObserver() {
-      const advancedObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Add staggered animations for grid items
-            const gridItems = entry.target.querySelectorAll('[style*="animation-delay"]');
-            gridItems.forEach((item, index) => {
-              setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0) scale(1)';
-              }, index * 150);
-            });
-          }
-        });
-      }, { 
-        threshold: 0.2,
-        rootMargin: '0px 0px -10% 0px'
-      });
-
-      // Observe sections with advanced animations
-      document.querySelectorAll('section:has([style*="animation-delay"])').forEach(section => {
-        advancedObserver.observe(section);
-      });
-    }
-
-    // Add CSS for line-clamp (multi-line text truncation)
-    const style = document.createElement('style');
-    style.textContent = `
-      .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-      
-      @keyframes gradientShift {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-      }
-      
-      @keyframes blob {
-        0% { transform: translate(0px, 0px) scale(1); }
-        33% { transform: translate(30px, -50px) scale(1.1); }
-        66% { transform: translate(-20px, 20px) scale(0.9); }
-        100% { transform: translate(0px, 0px) scale(1); }
-      }
-      
-      .animate-blob {
-        animation: blob 7s infinite;
-      }
-      
-      .animation-delay-2000 { animation-delay: 2s; }
-      .animation-delay-4000 { animation-delay: 4s; }
-      
-      .active.scale-95 { transform: scale(0.95); }
-      
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-          scroll-behavior: auto !important;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Performance optimizations
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(() => {
-          // Service worker registration failed
-        });
-      });
-    }
-
-    // Preload critical resources
-    const links = [
-      'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'
-    ];
     
-    links.forEach(href => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'style';
-      link.href = href;
-      document.head.appendChild(link);
+    // Form Handler (commented out as form is removed)
+    /*
+    function initFormHandler() {
+      // ... form logic was here ...
+    }
+    */
+
+    // Particles Canvas
+    function initParticles() {
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      
+      const setupCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        let numParticles = Math.floor((canvas.width * canvas.height) / 25000);
+        
+        for (let i = 0; i < numParticles; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.3,
+            vy: (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.4 + 0.1,
+            radius: Math.random() * 1.5 + 1
+          });
+        }
+      };
+      
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const isDark = document.documentElement.classList.contains('dark');
+        const particleColor = isDark ? 'rgba(56, 189, 248, 0.6)' : 'rgba(2, 132, 199, 0.6)';
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = particleColor.replace('0.6', p.opacity.toString());
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      };
+
+      setupCanvas();
+      animate();
+      
+      window.addEventListener('resize', () => setupCanvas());
+    }
+
+    // Loading Screen
+    function initLoadingScreen() {
+      window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 1000);
+      });
+    }
+
+    // --- START: NEW PUBLICATION SCRIPT LOGIC ---
+    
+    /**
+     * Publications dataset
+     * Required fields: id, title, authors, venue, year, type
+     * Optional: doi, html, pdf, video, code, tags, abstract, bibtex
+     */
+     const publications = [
+       // 2025 — Journals
+       { id:'trr-2025-drum', type:'Journal', year:2025, venue:'Transportation Research Record', title:'Dynamic Route Planning for Urban Green Mobility: Development of a Web Application Offering Sustainable Route Options to Commuters', authors:'Kapil Kumar Meena; Aditya Kumar Singh; Arkopal Kishore Goswami', doi:'https://doi.org/10.1177/03611981251331011', html:'https://doi.org/10.1177/03611981251331011', pdf:'', video:'https://www.youtube.com', tags:['Routing','AQI','Energy'] },
+       { id:'stl-2025-tod', type:'Journal', year:2025, venue:'Sustainable Transport and Livability', title:'A prioritization framework to identify key attributes of transit-oriented development (TOD) using multi-criteria decision-making (MCDM) approach: an Indian context', authors:'B. S. Manoj; Kapil Kumar Meena; Arkopal K. Goswami', doi:'https://doi.org/10.1080/29941849.2025.2516475', html:'https://doi.org/10.1080/29941849.2025.2516475', tags:['MCDM','TOD'] },
+       { id:'ijst-2025-bicycle', type:'Journal', year:2025, venue:'International Journal of Sustainable Transportation', title:'Modeling bicycle choice behavior and its potential health impact: Case of first/last mile access to suburban rail', authors:'B. S. Manoj; Kapil Kumar Meena; Hiral Panchal; Gajanand Sharma; Arkopal Kishore Goswami', doi:'', tags:['Cycling','Health Impact'] },
+       // 2024 — Journals & Conferences
+       { id:'tranpol-2024-review', type:'Journal', year:2024, venue:'Transport Policy', title:'A review of air pollution exposure impacts on travel behaviour and way forward', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami', doi:'https://doi.org/10.1016/j.tranpol.2024.05.024', html:'https://doi.org/10.1016/j.tranpol.2024.05.024', tags:['Review','Exposure','Behaviour'] },
+       { id:'daj-2024-ml-aqi', type:'Journal', year:2024, venue:'Decision Analytics Journal', title:'A machine learning approach for unraveling the influence of air quality awareness on travel behavior', authors:'Kapil Kumar Meena; Deepak Bairwa; Amit Agarwal', doi:'https://doi.org/10.1016/j.dajour.2024.100459', html:'https://doi.org/10.1016/j.dajour.2024.100459', tags:['Machine Learning','Behaviour'] },
+       { id:'comsnets-2024-mode-choice', type:'Conference', year:2024, venue:'COMSNETS', title:'Impact of air pollution on informed decision-making for choice of a travel mode', authors:'K. K. Meena; R. Taneja; A. Agarwal', doi:'https://doi.org/10.1109/COMSNETS59351.2024.10427003', html:'https://doi.org/10.1109/COMSNETS59351.2024.10427003', tags:['Conference','Mode Choice'] },
+       // 2023 — Journal
+       { id:'jth-2023-delhi', type:'Journal', year:2023, venue:'Journal of Transport & Health', title:'Perception of Commuters Towards Air Quality in Delhi', authors:'Kapil Kumar Meena; Vikram Singh; Amit Agarwal', doi:'https://doi.org/10.1016/j.jth.2023.101643', html:'https://doi.org/10.1016/j.jth.2023.101643', tags:['Perception','Delhi'] },
+       // 2021 — Journal
+       { id:'uclim-2021-review', type:'Journal', year:2021, venue:'Urban Climate', title:'Travellers’ exposure to air pollution: A systematic review and future directions', authors:'Vikram Singh; Kapil Kumar Meena; Amit Agarwal', doi:'https://doi.org/10.1016/j.uclim.2021.100901', html:'https://doi.org/10.1016/j.uclim.2021.100901', tags:['Review','Exposure'] },
+
+       // Conferences (full list from CV)
+       { id:'trb-2026-lcca-dcm', type:'Conference', year:2026, venue:'Transportation Research Board Annual Meeting', title:'Not all travellers think alike: Segmenting travel behaviour under air pollution exposure using a hybrid latent class and discrete choice approach', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami', tags:['TRB','LCCA','Choice Modelling'], abstract:'Accepted for presentation and publication.' },
+       { id:'trb-2026-walkability', type:'Conference', year:2026, venue:'Transportation Research Board Annual Meeting', title:'Developing an integrated walkability score using image-based feature extraction and user preferences', authors:'Anshul Singh; Kapil Kumar Meena; Gajanand Sharma; Arkopal Kishore Goswami; Sudheer Mishra', abstract:'Submitted.' },
+       { id:'ctrg-2023-pub-2025', type:'Conference', year:2025, venue:'CTRG 2023 (SVNIT Surat)', title:'Dynamic route planning for urban green mobility: Development of a web application offering sustainable route options to commuters', authors:'Kapil Kumar Meena; Aditya Kumar Singh; Arkopal Kishore Goswami' },
+       { id:'easts-2025-school', type:'Conference', year:2025, venue:'EASTS', title:'Assessing the air pollution exposure to school children in different modes of transport while commuting to school: A case of Kharagpur, India', authors:'Anusha Sumbhate; Kapil Kumar Meena; Arkopal Kishore Goswami', abstract:'Accepted.' },
+       { id:'wsstl-2025-tod', type:'Conference', year:2025, venue:'WSSTL 2025 (IISc Bengaluru)', title:'A prioritization framework to identify key attributes of transit-oriented development (TOD) using a multi-criteria decision-making approach: An Indian context', authors:'B. S. Manoj; Kapil Kumar Meena; Arkopal Kishore Goswami' },
+       { id:'tipce-2025-access', type:'Conference', year:2025, venue:'TIPCE 2025 (IIT Roorkee)', title:'Accessibility assessment of urban public transit to key facilities through spatial analysis – a case study of Delhi', authors:'Rasagna Kodukulla; Kapil Kumar Meena; Gajanand Sharma; Arkopal Kishore Goswami', abstract:'Accepted.' },
+       { id:'aeee-2025-energies', type:'Conference', year:2025, venue:'AEEE India — Energies', title:'Air pollution exposure among Kolkata’s auto-rickshaw drivers: PM variability, health risks, and predictive modeling', authors:'S. Dasgupta; Kapil Kumar Meena; D. Majumdar; Arkopal Goswami', abstract:'Accepted.' },
+       { id:'uaa-2024-breathable', type:'Conference', year:2024, venue:'UAA 2024 (Nashville, USA)', title:'Breathable modes to school: Assessing the air pollution exposure of travel choices for school children in urban environments', authors:'Anusha Sumbhate; Kapil Kumar Meena; Arkopal Kishore Goswami' },
+       { id:'uaa-2024-bicycle', type:'Conference', year:2024, venue:'UAA 2024 (Nashville, USA)', title:'Analysing user behaviour along dedicated bicycle facilities in an urban environment', authors:'P. Mohanty; Kapil Kumar Meena; Arkopal Kishore Goswami' },
+       { id:'iatbr-2024-mumbai', type:'Conference', year:2024, venue:'IATBR 2024 (Vienna, Austria)', title:'Assessing the willingness to bicycle for the first mile to the Mumbai suburban rail', authors:'B. S. Manoj; Kapil Kumar Meena; Hiral Panchal; Gajanand Sharma; Arkopal Goswami' },
+       { id:'wctr-2023-review', type:'Conference', year:2023, venue:'WCTR 2023 (Montréal, Canada)', title:'A review of air pollution exposure impacts on travel behaviour and way forward', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami' },
+       { id:'tpmdc-2022-onroad', type:'Conference', year:2022, venue:'TPMDC 2022 (IIT Bombay)', title:'On-road pollution exposure in multiple transport micro-environments: A case study of Tier-2 and Tier-3 cities in India', authors:'Kapil Kumar Meena; Ranjani Kumar; Arkopal Kishore Goswami' },
+
+       // Media
+       { id:'media-2025-hindu-drum', type:'Media', year:2025, venue:'The Hindu', title:"IIT-KGP app helps commuters pick ‘greener’ routes on the road", authors:'Ashmita Gupta', html:'https://www.thehindu.com/sci-tech/energy-and-environment/iit-kgp-app-helps-commuters-pick-greener-routes-on-the-road/article69644558.ece', tags:['Media','DRUM'] },
+     ];
+
+     // ===== App Logic =====
+     const state = { query:'', year:'', type:'', venue:'', sort:'yearDesc' };
+     const els = {
+       grouped: document.getElementById('grouped'),
+       empty: document.getElementById('emptyState'),
+       search: document.getElementById('search'),
+       year: document.getElementById('yearFilter'),
+       type: document.getElementById('typeFilter'),
+       venue: document.getElementById('venueFilter'),
+       sort: document.getElementById('sortBy'),
+       chips: document.getElementById('activeChips'),
+       statTotal: document.getElementById('statTotal'),
+       // Removed els.modeBtn, els.sun, els.moon, els.export as they don't exist in index.html
+     };
+
+     // Theme logic removed - handled by initThemeToggle()
+     
+     // Populate filters
+     const years = [...new Set(publications.map(p=>p.year))].sort((a,b)=>b-a);
+     years.forEach(y=>{ const o=document.createElement('option'); o.value=y; o.textContent=y; els.year.appendChild(o); });
+     const venues = [...new Set(publications.map(p=>p.venue))].sort((a,b)=>a.localeCompare(b));
+     venues.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; els.venue.appendChild(o); });
+
+     // Events
+     els.search.addEventListener('input', e=>{ state.query=e.target.value.trim(); render(); });
+     els.year.addEventListener('change', e=>{ state.year=e.target.value; render(); });
+     els.type.addEventListener('change', e=>{ state.type=e.target.value; render(); });
+     els.venue.addEventListener('change', e=>{ state.venue=e.target.value; render(); });
+     els.sort.addEventListener('change', e=>{ state.sort=e.target.value; render(); });
+     window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==els.search){ e.preventDefault(); els.search.focus(); } });
+
+     // Export logic removed - button doesn't exist in index.html
+
+     function download(filename, text){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:'text/plain'})); a.download=filename; a.click(); }
+     function toCSV(rows){
+       const cols=['id','type','year','venue','title','authors','doi','html','pdf'];
+       const header=cols.join(',');
+       const body=rows.map(r=>cols.map(c=>`"${(r[c]||'').toString().replace(/"/g,'""')}` ).join(',')).join('\n');
+       return header+'\n'+body;
+     }
+
+     // Chips
+     function chip(label, value, onClear) {
+       const wrap = document.createElement('div');
+       wrap.className = 'inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1 text-sm';
+       wrap.innerHTML = `<span class="text-slate-500">${label}:</span><span class="font-medium">${escapeHtml(value)}</span>`;
+       const btn = document.createElement('button');
+       btn.className = 'ml-1 rounded-full p-1 hover:bg-slate-200 dark:hover:bg-slate-700';
+       btn.innerHTML = '<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 4.99 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6 5.6-5.6-1.4-1.4-5.6 5.6L6.4 4.99Z"/></svg>';
+       btn.addEventListener('click', onClear);
+       wrap.appendChild(btn); return wrap;
+     }
+
+     // Render
+     function render(){
+       const filtered = publications
+         .filter(p => state.year ? String(p.year)===state.year : true)
+         .filter(p => state.type ? p.type===state.type : true)
+         .filter(p => state.venue ? p.venue===state.venue : true)
+         .filter(p => matchQuery(p, state.query));
+
+       // Sort
+       filtered.sort((a,b)=>{
+         switch(state.sort){
+           case 'yearAsc': return a.year - b.year;
+           case 'titleAsc': return a.title.localeCompare(b.title);
+           default: return b.year - a.year;
+         }
+       });
+
+       // Stats
+       els.statTotal.textContent = filtered.length;
+
+       // Chips
+       els.chips.innerHTML='';
+       if(state.query) els.chips.appendChild(chip('Search', state.query, ()=>{ state.query=''; els.search.value=''; render(); }));
+       if(state.year) els.chips.appendChild(chip('Year', state.year, ()=>{ state.year=''; els.year.value=''; render(); }));
+       if(state.type) els.chips.appendChild(chip('Type', state.type, ()=>{ state.type=''; els.type.value=''; render(); }));
+       if(state.venue) els.chips.appendChild(chip('Venue', state.venue, ()=>{ state.venue=''; els.venue.value=''; render(); }));
+
+       // Group by year
+       const groups = groupBy(filtered, p=>p.year);
+       const yearsSorted = Object.keys(groups).map(Number).sort((a,b)=>b-a);
+
+       els.grouped.innerHTML='';
+       if (filtered.length===0){ els.empty.classList.remove('hidden'); return; } else { els.empty.classList.add('hidden'); }
+
+       yearsSorted.forEach(y=>{
+         const wrap=document.createElement('section');
+         wrap.className='mb-8';
+         wrap.innerHTML = `<h2 class='year-sticky text-xl font-semibold bg-slate-50/80 dark:bg-slate-950/60 backdrop-blur py-2 px-2 rounded'>${y}</h2>`;
+         const grid=document.createElement('div'); grid.className='mt-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4';
+         groups[y].forEach(p=> grid.appendChild(card(p)) );
+         wrap.appendChild(grid); els.grouped.appendChild(wrap);
+       });
+     }
+
+     // Card
+     function card(p){
+       const el=document.createElement('article'); el.className='fade-in rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-soft transition-shadow';
+       el.tabIndex=0; el.setAttribute('role','button');
+       el.addEventListener('click', ()=>openModal(p)); el.addEventListener('keydown', e=>{ if(e.key==='Enter') openModal(p); });
+
+       const badge = `<span class='ml-auto shrink-0 rounded-lg ${p.type==='Journal'?'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300':(p.type==='Conference'?'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300':'bg-gray-50 text-gray-700 dark:bg-gray-900/30 dark:text-gray-300')} px-2 py-0.5 text-xs'>${p.type}</span>`;
+       const venue = `<span class='font-medium'>${escapeHtml(p.venue||'')}</span>`;
+       const actions = [
+         p.html && `<a href='${p.html}' target='_blank' class='btn'>HTML</a>`,
+         p.doi && `<a href='${p.doi}' target='_blank' class='btn'>DOI</a>`,
+         p.pdf && `<a href='${p.pdf}' target='_blank' class='btn'>PDF</a>`,
+         p.video && `<a href='${p.video}' target='_blank' class='btn'>Video</a>`
+       ].filter(Boolean).join('');
+
+       el.innerHTML = `
+         <div class='p-4'>
+           <div class='flex items-start justify-between gap-3'>
+             <h3 class='font-semibold leading-snug'>${escapeHtml(p.title)}</h3>
+             ${badge}
+           </div>
+           <div class='mt-1 text-sm text-slate-600 dark:text-slate-400 clamp-2'>${escapeHtml(p.authors||'')} · ${venue} · ${p.year}</div>
+           ${p.tags && p.tags.length ? `<div class='mt-3 flex flex-wrap gap-2'>${p.tags.map(t=>`<span class="text-xs rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5">${escapeHtml(t)}</span>`).join(' ')}</div>`:''}
+           <div class='mt-3 flex items-center justify-between'><span></span><div class='flex flex-wrap gap-2'>${actions}</div></div>
+         </div>`;
+       return el;
+     }
+
+     // Modal
+     const modal = document.getElementById('modal');
+     const modalTitle = document.getElementById('modalTitle');
+     const modalMeta = document.getElementById('modalMeta');
+     const modalAbstract = document.getElementById('modalAbstract');
+     const modalTags = document.getElementById('modalTags');
+     const modalActions = document.getElementById('modalActions');
+     const modalBib = document.getElementById('modalBib');
+     const copyBib = document.getElementById('copyBib');
+
+     function openModal(p){
+       modal.classList.remove('hidden');
+       modalTitle.textContent = p.title;
+       modalMeta.innerHTML = `${escapeHtml(p.authors||'')} · <span class="font-medium">${escapeHtml(p.venue||'')}</span> · ${p.year}`;
+       modalAbstract.textContent = p.abstract||'';
+       modalTags.innerHTML = (p.tags||[]).map(t=>`<span class="text-xs rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5">${escapeHtml(t)}</span>`).join(' ');
+       modalActions.innerHTML = [ p.html&&`<a class='btn' target='_blank' href='${p.html}'>HTML</a>`, p.doi&&`<a class='btn' target='_blank' href='${p.doi}'>DOI</a>`, p.pdf&&`<a class='btn' target='_blank' href='${p.pdf}'>PDF</a>`, p.video&&`<a class='btn' target='_blank' href='${p.video}'>Video</a>` ].filter(Boolean).join('');
+       modalBib.textContent = p.bibtex || bibtexOf(p);
+       copyBib.onclick = () => { navigator.clipboard.writeText(modalBib.textContent); copyBib.textContent='Copied!'; setTimeout(()=>copyBib.textContent='Copy', 1200); };
+     }
+     function closeModal(){ modal.classList.add('hidden'); }
+     document.getElementById('modalClose').addEventListener('click', closeModal);
+     document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+
+     // Helpers
+     function groupBy(arr, key){ return arr.reduce((m,x)=>{ const k=key(x); (m[k]=m[k]||[]).push(x); return m; }, {}); }
+     function matchQuery(p,q){ if(!q) return true; const hay=[p.title,p.authors,p.venue,(p.tags||[]).join(' ')].join(' ').toLowerCase(); return q.toLowerCase().split(/\s+/).every(t=>hay.includes(t)); }
+     function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c])); }
+     function bibtexOf(p){
+       const key = (p.venue||'').toLowerCase().split(/[^a-z0-9]/).filter(Boolean).slice(0,2).join('') + p.year;
+       const authors = (p.authors||'').split(/;|,\s*/).map(a=>a.trim()).filter(Boolean).join(' and ');
+       const type = p.type==='Journal' ? 'article' : (p.type==='Conference' ? 'inproceedings' : 'misc');
+       const venueField = p.type==='Journal' ? `  journal={${p.venue}},\n` : (p.type==='Conference' ? `  booktitle={${p.venue}},\n` : '');
+       const doiField = p.doi ? `  doi={${p.doi.replace('https://doi.org/','')}},\n` : '';
+       return `@${type}{${key},\n  title={${p.title}},\n  author={${authors}},\n${venueField}  year={${p.year}},\n${doiField}}`;
+     }
+
+     // Enhance .btn links (prevent card click)
+     document.addEventListener('click', (e)=>{ const a=e.target.closest('a.btn'); if(!a) return; e.stopPropagation(); });
+
+     // Style logic removed - moved to <style> tag
+
+     // Init
+     render();
+     
+     // --- END: NEW PUBLICATION SCRIPT LOGIC ---
+
+    // Initialize all functions
+    document.addEventListener('DOMContentLoaded', () => {
+      initThemeToggle();
+      initMobileMenu();
+      initSmoothScrolling();
+      initScrollEffects();
+      initScrollAnimations();
+      // initPublicationFilters(); // Removed, new logic runs automatically
+      // initModalSystem(); // Removed, new logic runs automatically
+      initCounterAnimations();
+      initCursorFollower();
+      // initFormHandler(); // Form is removed
+      initParticles();
+      initLoadingScreen();
+      
+      // New publication logic is already running (e.g., render())
     });
   </script>
 </body>
