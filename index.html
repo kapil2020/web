@@ -42,7 +42,7 @@
               900: '#0c4a6e',
             }
           },
-           boxShadow: { // Added from new code
+           boxShadow: {
             soft: '0 10px 30px -12px rgba(0,0,0,0.25)'
            },
           animation: {
@@ -54,7 +54,7 @@
             'tilt': 'tilt 10s infinite linear',
           },
           keyframes: {
-            fadeIn: { // This definition might be overwritten by new CSS, which is fine
+            fadeIn: {
               '0%': { opacity: '0', transform: 'translateY(20px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' }
             },
@@ -530,16 +530,28 @@
 
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           <!-- Left: Content -->
-          <div class="space-y-8 fade-in-up" data-aos-delay="200">
+          <div class="space-y-6 fade-in-up" data-aos-delay="200">
             <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              I am a final-year PhD researcher at IIT Kharagpur with over <strong>7 years of dedicated experience</strong> in sustainable transportation and urban mobility. My work exists at the intersection of <strong>travel behavior, air quality exposure, and data science</strong>. I build tools and models to understand *why* people travel the way they do and *how* we can nudge those choices toward greener, healthier outcomes.
+              I am a transportation researcher with <strong class="font-semibold text-primary-700 dark:text-primary-400">7+ years of experience</strong> in sustainable mobility, travel behavior analysis, and learning-based decision-making for complex urban systems. My goal is to develop <strong class="font-semibold text-primary-700 dark:text-primary-400">data-driven AI solutions</strong> for improved engineering and social outcomes, creating healthier and more sustainable cities. To this end, my work has resulted in <strong class="font-semibold text-primary-700 dark:text-primary-400">15+ publications</strong> in top-tier venues, accumulating over 121 citations.
             </p>
             <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              My expertise lies in <strong>Machine Learning, discrete choice modeling, and big data analysis</strong>, which I've used to develop tools like the DRUM web app for pollution-aware routing. With a research portfolio of 15+ publications (121+ citations) in top journals like <em>Transport Policy</em> and <em>Urban Climate</em>, my goal is to translate complex data into actionable policy.
+              In my current role as a final-year <strong class="font-semibold text-primary-700 dark:text-primary-400">PhD Researcher at IIT Kharagpur</strong>, I develop novel approaches using <strong class="font-semibold text-primary-700 dark:text-primary-400">Machine Learning</strong> and <strong class="font-semibold text-primary-700 dark:text-primary-400">discrete choice models</strong> to understand and influence travel decisions. This research has produced tangible tools, like the DRUM web app, which empowers commuters to make pollution-aware routing choices.
             </p>
             <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              I am actively <strong>seeking a postdoctoral research position</strong> where I can apply my quantitative skills to solve pressing global mobility challenges and contribute to building smarter, more resilient cities.
+              My foundational research during my MTech at IIT Roorkee focused on developing fundamental insights into commuter air quality exposure and effective algorithms for road safety. I am now actively seeking a <strong class="font-semibold text-primary-700 dark:text-primary-400">postdoctoral opportunity</strong> to apply my expertise in data science and behavioral modeling to solve challenging problems in autonomous systems, human-AI interaction in transport, or large-scale mobility networks.
             </p>
+            
+            <!-- Key Expertise Block -->
+            <div class="mt-4">
+              <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">Key Expertise:</h4>
+              <div class="flex flex-wrap gap-3">
+                <span class="bg-primary-100 dark:bg-primary-900/30 px-4 py-2 rounded-full text-primary-800 dark:text-primary-200 font-medium">Travel Behavior Modeling</span>
+                <span class="bg-green-100 dark:bg-green-900/30 px-4 py-2 rounded-full text-green-800 dark:text-green-200 font-medium">Machine Learning</span>
+                <span class="bg-yellow-100 dark:bg-yellow-900/30 px-4 py-2 rounded-full text-yellow-800 dark:text-yellow-200 font-medium">Air Quality Exposure</span>
+                <span class="bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-full text-purple-800 dark:text-purple-200 font-medium">Big Data Analysis</span>
+                <span class="bg-red-100 dark:bg-red-900/30 px-4 py-2 rounded-full text-red-800 dark:text-red-200 font-medium">Sustainable Mobility</span>
+              </div>
+            </div>
 
             <!-- Education Cards -->
             <div class="grid md:grid-cols-2 gap-6 mt-8">
@@ -695,14 +707,12 @@
     </section>
 
     <!-- Publications Section -->
-    <section id="publications" class="bg-gray-50 dark:bg-gray-800"> <!-- Removed py-24 -->
-      <!-- START of new content -->
-      <!-- Intro + Controls (from new code) -->
+    <section id="publications" class="bg-gray-50 dark:bg-gray-800">
+      <!-- Intro + Controls -->
       <div class="bg-gradient-to-b from-slate-100 to-transparent dark:from-slate-900/40">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-10"> <!-- Kept py-8 lg:py-10 -->
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
           <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div>
-              <!-- MODIFIED: Matched h2 style of original site -->
               <h2 class="text-4xl md:text-5xl font-black mb-4 fade-in-up">Publications</h2>
               <p class="mt-2 max-w-2xl text-slate-600 dark:text-slate-400">Verified entries from TRR, Transport Policy, DAJ, JTH, Urban Climate, COMSNETS, TRB, and more. Search, filter, group by year, and open a modal for BibTeX, links, and tags.</p>
             </div>
@@ -733,8 +743,8 @@
         </div>
       </div>
 
-      <!-- Results (from new code) -->
-      <main> <!-- This is semantically weird, but it's what the user provided -->
+      <!-- Results -->
+      <main>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20">
           <div id="grouped"></div>
           <div id="emptyState" class="hidden py-20 text-center text-slate-500 dark:text-slate-400">
@@ -745,7 +755,6 @@
           </div>
         </div>
       </main>
-      <!-- END of new content -->
     </section>
 
     <!-- Projects Section -->
@@ -1186,7 +1195,7 @@
     </section>
   </main>
 
-  <!-- START: NEW MODAL HTML -->
+  <!-- New Modal HTML -->
   <div id="modal" class="fixed inset-0 z-50 hidden" aria-hidden="true">
     <div class="absolute inset-0 bg-black/50" id="modalBackdrop"></div>
     <div class="absolute inset-0 grid place-items-center p-4">
@@ -1213,9 +1222,53 @@
       </div>
     </div>
   </div>
-  <!-- END: NEW MODAL HTML -->
   
-  <!-- OLD MODAL HTML IS DELETED -->
+  <!-- Other Modals (for Projects) -->
+  <div id="modal-container" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+    <!-- Project Modals -->
+    <div id="proj-tutem" class="modal hidden w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+      <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex justify-between items-center">
+          <h3 class="font-bold text-xl">Project Details</h3>
+          <button data-modal-close class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl">&times;</button>
+        </div>
+      </div>
+      <div class="p-6 max-h-96 overflow-y-auto scrollbar-thin">
+        <h4 class="font-bold text-lg mb-2">TUTEM (ADB-Funded Project)</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Technologies for urban transit enhancement and safe accessibility</p>
+        <p class="text-gray-700 dark:text-gray-300">As part of this Asian Development Bank (ADB) funded initiative at IIT Kharagpur, my role involves developing and assessing technologies to improve urban transit. This includes working on real-time data integration for multimodal transport systems, optimizing first/last-mile connectivity, and enhancing passenger safety and accessibility, particularly for vulnerable road users.</p>
+      </div>
+    </div>
+
+    <div id="proj-maas" class="modal hidden w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+      <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex justify-between items-center">
+          <h3 class="font-bold text-xl">Project Details</h3>
+          <button data-modal-close class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl">&times;</button>
+        </div>
+      </div>
+      <div class="p-6 max-h-96 overflow-y-auto scrollbar-thin">
+        <h4 class="font-bold text-lg mb-2">MaaS Demand Study</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Forecasting demand for Mobility as a Service in Indian contexts</p>
+        <p class="text-gray-700 dark:text-gray-300">This project involved a comprehensive study to forecast the potential demand for Mobility as a Service (MaaS) platforms in major Indian cities. We utilized stated preference surveys and discrete choice modeling to understand user preferences for bundled mobility packages, identifying key barriers and drivers for MaaS adoption in the unique Indian urban landscape.</p>
+      </div>
+    </div>
+    
+    <div id="conf-easts-2025" class="modal hidden w-full max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+      <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex justify-between items-center">
+          <h3 class="font-bold text-xl">EASTS 2025 (Accepted)</h3>
+          <button data-modal-close class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl">&times;</button>
+        </div>
+      </div>
+      <div class="p-6 max-h-96 overflow-y-auto scrollbar-thin">
+        <h4 class="font-bold text-lg mb-2">Assessing air pollution exposure to school children in Kharagpur</h4>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Sumbhate, Meena, et al.</p>
+        <p class="text-gray-700 dark:text-gray-300">This paper presents a comparative analysis of air pollution exposure for school children across different travel modes (walking, cycling, bus, car) in Kharagpur. We used portable sensors to measure real-time PM2.5 concentrations and GPS to track routes, revealing that active transport modes, while beneficial for health, can lead to higher inhaled doses without proper infrastructure and routing.</p>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Footer -->
   <footer class="py-12 bg-gray-900 text-white text-center">
@@ -1396,23 +1449,72 @@
         observer.observe(el);
       });
     }
+    
+    // Project/Other Modal System
+    function initProjectModalSystem() {
+      const modalContainer = document.getElementById('modal-container');
+      const openTriggers = document.querySelectorAll('[data-modal-trigger]');
+      
+      const openModal = (modalId) => {
+        const modal = document.getElementById(modalId);
+        if (!modal) {
+          console.warn('Modal not found:', modalId);
+          return; // Don't open if modal isn't for projects
+        }
+        
+        modalContainer.classList.remove('hidden', 'opacity-0');
+        modal.classList.remove('hidden', 'scale-95', 'opacity-0');
+        modal.classList.add('scale-100', 'opacity-100');
+        document.body.style.overflow = 'hidden';
+      };
 
-    // --- OLD initPublicationFilters DELETED ---
-    // --- OLD initModalSystem DELETED ---
+      const closeModal = () => {
+        const openModal = modalContainer.querySelector('.modal:not(.hidden)');
+        if (openModal) {
+          openModal.classList.remove('scale-100', 'opacity-100');
+          openModal.classList.add('scale-95', 'opacity-0');
+        }
+        modalContainer.classList.add('opacity-0');
+        
+        setTimeout(() => {
+          modalContainer.classList.add('hidden');
+          openModal?.classList.add('hidden');
+          document.body.style.overflow = '';
+        }, 300);
+      };
+
+      openTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal(trigger.dataset.modalTrigger);
+        });
+      });
+
+      modalContainer.addEventListener('click', (e) => {
+        if (e.target === modalContainer || e.target.closest('[data-modal-close]')) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modalContainer.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+    }
 
     // Counter Animations
     function initCounterAnimations() {
       const counters = document.querySelectorAll('[data-target]');
-      const speed = 200; // Lower is faster
 
       const animateCounter = (counter) => {
         const target = +counter.dataset.target;
         const duration = 2000; // 2 seconds
-        let start = 0;
-        const startTime = Date.now();
+        let startTime = null;
 
-        const update = () => {
-          const elapsed = Date.now() - startTime;
+        const update = (timestamp) => {
+          if (!startTime) startTime = timestamp;
+          const elapsed = timestamp - startTime;
           const progress = Math.min(1, elapsed / duration);
           const current = Math.floor(progress * target);
           
@@ -1466,7 +1568,7 @@
         mouseY = e.clientY;
       });
 
-      document.querySelectorAll('a, button, [data-modal-trigger], input, textarea, .filter-btn').forEach(el => {
+      document.querySelectorAll('a, button, [data-modal-trigger], input, textarea, .filter-btn, [role="button"]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1.5)`);
         el.addEventListener('mouseleave', () => cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1)`);
       });
@@ -1474,13 +1576,6 @@
       animate();
     }
     
-    // Form Handler (commented out as form is removed)
-    /*
-    function initFormHandler() {
-      // ... form logic was here ...
-    }
-    */
-
     // Particles Canvas
     function initParticles() {
       const canvas = document.getElementById('particles');
@@ -1550,34 +1645,37 @@
      */
      const publications = [
        // 2025 — Journals
-       { id:'trr-2025-drum', type:'Journal', year:2025, venue:'Transportation Research Record', title:'Dynamic Route Planning for Urban Green Mobility: Development of a Web Application Offering Sustainable Route Options to Commuters', authors:'Kapil Kumar Meena; Aditya Kumar Singh; Arkopal Kishore Goswami', doi:'https://doi.org/10.1177/03611981251331011', html:'https://doi.org/10.1177/03611981251331011', pdf:'', video:'https://www.youtube.com', tags:['Routing','AQI','Energy'] },
-       { id:'stl-2025-tod', type:'Journal', year:2025, venue:'Sustainable Transport and Livability', title:'A prioritization framework to identify key attributes of transit-oriented development (TOD) using multi-criteria decision-making (MCDM) approach: an Indian context', authors:'B. S. Manoj; Kapil Kumar Meena; Arkopal K. Goswami', doi:'https://doi.org/10.1080/29941849.2025.2516475', html:'https://doi.org/10.1080/29941849.2025.2516475', tags:['MCDM','TOD'] },
-       { id:'ijst-2025-bicycle', type:'Journal', year:2025, venue:'International Journal of Sustainable Transportation', title:'Modeling bicycle choice behavior and its potential health impact: Case of first/last mile access to suburban rail', authors:'B. S. Manoj; Kapil Kumar Meena; Hiral Panchal; Gajanand Sharma; Arkopal Kishore Goswami', doi:'', tags:['Cycling','Health Impact'] },
+       { id:'trr-2025-drum', type:'Journal', year:2025, venue:'Transportation Research Record', title:'Dynamic Route Planning for Urban Green Mobility: Development of a Web Application Offering Sustainable Route Options to Commuters', authors:'Kapil Kumar Meena; Aditya Kumar Singh; Arkopal Kishore Goswami', doi:'https://doi.org/10.1177/03611981251331011', html:'https://doi.org/10.1177/03611981251331011', pdf:'', video:'https://www.youtube.com', tags:['Routing','AQI','Energy', 'Web App', 'DRUM'] },
+       { id:'stl-2025-tod', type:'Journal', year:2025, venue:'Sustainable Transport and Livability', title:'A prioritization framework to identify key attributes of transit-oriented development (TOD) using multi-criteria decision-making (MCDM) approach: an Indian context', authors:'B. S. Manoj; Kapil Kumar Meena; Arkopal K. Goswami', doi:'https://doi.org/10.1080/29941849.2025.2516475', html:'https://doi.org/10.1080/29941849.2025.2516475', tags:['MCDM','TOD', 'Prioritization'] },
+       { id:'ijst-2025-bicycle', type:'Journal', year:2025, venue:'International Journal of Sustainable Transportation', title:'Modeling bicycle choice behavior and its potential health impact: Case of first/last mile access to suburban rail', authors:'B. S. Manoj; Kapil Kumar Meena; Hiral Panchal; Gajanand Sharma; Arkopal Kishore Goswami', doi:'https://doi.org/10.1080/15568318.2024.2384786', html: 'https://doi.org/10.1080/15568318.2024.2384786', tags:['Cycling','Health Impact', 'Choice Modelling', 'First/Last Mile'] },
        // 2024 — Journals & Conferences
-       { id:'tranpol-2024-review', type:'Journal', year:2024, venue:'Transport Policy', title:'A review of air pollution exposure impacts on travel behaviour and way forward', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami', doi:'https://doi.org/10.1016/j.tranpol.2024.05.024', html:'https://doi.org/10.1016/j.tranpol.2024.05.024', tags:['Review','Exposure','Behaviour'] },
-       { id:'daj-2024-ml-aqi', type:'Journal', year:2024, venue:'Decision Analytics Journal', title:'A machine learning approach for unraveling the influence of air quality awareness on travel behavior', authors:'Kapil Kumar Meena; Deepak Bairwa; Amit Agarwal', doi:'https://doi.org/10.1016/j.dajour.2024.100459', html:'https://doi.org/10.1016/j.dajour.2024.100459', tags:['Machine Learning','Behaviour'] },
-       { id:'comsnets-2024-mode-choice', type:'Conference', year:2024, venue:'COMSNETS', title:'Impact of air pollution on informed decision-making for choice of a travel mode', authors:'K. K. Meena; R. Taneja; A. Agarwal', doi:'https://doi.org/10.1109/COMSNETS59351.2024.10427003', html:'https://doi.org/10.1109/COMSNETS59351.2024.10427003', tags:['Conference','Mode Choice'] },
+       { id:'tranpol-2024-review', type:'Journal', year:2024, venue:'Transport Policy', title:'A review of air pollution exposure impacts on travel behaviour and way forward', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami', doi:'https://doi.org/10.1016/j.tranpol.2024.05.024', html:'https://doi.org/10.1016/j.tranpol.2024.05.024', tags:['Review','Exposure','Behaviour', 'Systematic Review'] },
+       { id:'daj-2024-ml-aqi', type:'Journal', year:2024, venue:'Decision Analytics Journal', title:'A machine learning approach for unraveling the influence of air quality awareness on travel behavior', authors:'Kapil Kumar Meena; Deepak Bairwa; Amit Agarwal', doi:'https://doi.org/10.1016/j.dajour.2024.100459', html:'https://doi.org/10.1016/j.dajour.2024.100459', tags:['Machine Learning','Behaviour', 'AQI Awareness'] },
+       { id:'comsnets-2024-mode-choice', type:'Conference', year:2024, venue:'COMSNETS', title:'Impact of air pollution on informed decision-making for choice of a travel mode', authors:'K. K. Meena; R. Taneja; A. Agarwal', doi:'https://doi.org/10.1109/COMSNETS59351.2024.10427003', html:'https://doi.org/10.1109/COMSNETS59351.2024.10427003', tags:['Conference','Mode Choice', 'Decision Making'] },
        // 2023 — Journal
-       { id:'jth-2023-delhi', type:'Journal', year:2023, venue:'Journal of Transport & Health', title:'Perception of Commuters Towards Air Quality in Delhi', authors:'Kapil Kumar Meena; Vikram Singh; Amit Agarwal', doi:'https://doi.org/10.1016/j.jth.2023.101643', html:'https://doi.org/10.1016/j.jth.2023.101643', tags:['Perception','Delhi'] },
+       { id:'jth-2023-delhi', type:'Journal', year:2023, venue:'Journal of Transport & Health', title:'Perception of Commuters Towards Air Quality in Delhi', authors:'Kapil Kumar Meena; Vikram Singh; Amit Agarwal', doi:'https://doi.org/10.1016/j.jth.2023.101643', html:'https://doi.org/10.1016/j.jth.2023.101643', tags:['Perception','Delhi', 'Commuter Behavior'] },
+        { id:'jtrangeo-2023-tod', type:'Journal', year:2023, venue:'Journal of Transport Geography', title:'Multi-criteria decision making-based prioritization of corridors for the implementation of transit-oriented development', authors:'B. S. Manoj; Kapil Kumar Meena; Arkopal K. Goswami', doi:'https://doi.org/10.1016/j.jtrangeo.2023.103525', html: 'https://doi.org/10.1016/j.jtrangeo.2023.103525', tags:['MCDM','TOD', 'Prioritization', 'Urban Planning'] },
        // 2021 — Journal
-       { id:'uclim-2021-review', type:'Journal', year:2021, venue:'Urban Climate', title:'Travellers’ exposure to air pollution: A systematic review and future directions', authors:'Vikram Singh; Kapil Kumar Meena; Amit Agarwal', doi:'https://doi.org/10.1016/j.uclim.2021.100901', html:'https://doi.org/10.1016/j.uclim.2021.100901', tags:['Review','Exposure'] },
+       { id:'trd-2021-blackspot', type:'Journal', year:2021, venue:'Transportation Research Part D', title:'Development of a methodology for identifying blackspots using network-based kernel density estimation', authors:'Vikram Singh; Kapil Kumar Meena; Amit Agarwal', doi:'https://doi.org/10.1016/j.trd.2021.102871', html:'https://doi.org/10.1016/j.trd.2021.102871', tags:['Road Safety','Blackspot','KDE'] },
+       { id:'uclim-2021-review', type:'Journal', year:2021, venue:'Urban Climate', title:'Travellers’ exposure to air pollution: A systematic review and future directions', authors:'Vikram Singh; Kapil Kumar Meena; Amit Agarwal', doi:'https://doi.org/10.1016/j.uclim.2021.100901', html:'https://doi.org/10.1016/j.uclim.2021.100901', tags:['Review','Exposure', 'Systematic Review'] },
+       { id:'uclim-2021-exposure', type:'Journal', year:2021, venue:'Urban Climate', title:'Comparative analysis of commuters’ exposure to particulate matter in different transport modes in Delhi', authors:'Vikram Singh; Kapil Kumar Meena; Amit Agarwal; S. M. Shiva Nagendra', doi:'https://doi.org/10.1016/j.uclim.2021.100868', html:'https://doi.org/10.1016/j.uclim.2021.100868', tags:['Exposure','Delhi', 'Particulate Matter', 'Multi-modal'] },
 
        // Conferences (full list from CV)
        { id:'trb-2026-lcca-dcm', type:'Conference', year:2026, venue:'Transportation Research Board Annual Meeting', title:'Not all travellers think alike: Segmenting travel behaviour under air pollution exposure using a hybrid latent class and discrete choice approach', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami', tags:['TRB','LCCA','Choice Modelling'], abstract:'Accepted for presentation and publication.' },
        { id:'trb-2026-walkability', type:'Conference', year:2026, venue:'Transportation Research Board Annual Meeting', title:'Developing an integrated walkability score using image-based feature extraction and user preferences', authors:'Anshul Singh; Kapil Kumar Meena; Gajanand Sharma; Arkopal Kishore Goswami; Sudheer Mishra', abstract:'Submitted.' },
-       { id:'ctrg-2023-pub-2025', type:'Conference', year:2025, venue:'CTRG 2023 (SVNIT Surat)', title:'Dynamic route planning for urban green mobility: Development of a web application offering sustainable route options to commuters', authors:'Kapil Kumar Meena; Aditya Kumar Singh; Arkopal Kishore Goswami' },
-       { id:'easts-2025-school', type:'Conference', year:2025, venue:'EASTS', title:'Assessing the air pollution exposure to school children in different modes of transport while commuting to school: A case of Kharagpur, India', authors:'Anusha Sumbhate; Kapil Kumar Meena; Arkopal Kishore Goswami', abstract:'Accepted.' },
-       { id:'wsstl-2025-tod', type:'Conference', year:2025, venue:'WSSTL 2025 (IISc Bengaluru)', title:'A prioritization framework to identify key attributes of transit-oriented development (TOD) using a multi-criteria decision-making approach: An Indian context', authors:'B. S. Manoj; Kapil Kumar Meena; Arkopal Kishore Goswami' },
-       { id:'tipce-2025-access', type:'Conference', year:2025, venue:'TIPCE 2025 (IIT Roorkee)', title:'Accessibility assessment of urban public transit to key facilities through spatial analysis – a case study of Delhi', authors:'Rasagna Kodukulla; Kapil Kumar Meena; Gajanand Sharma; Arkopal Kishore Goswami', abstract:'Accepted.' },
-       { id:'aeee-2025-energies', type:'Conference', year:2025, venue:'AEEE India — Energies', title:'Air pollution exposure among Kolkata’s auto-rickshaw drivers: PM variability, health risks, and predictive modeling', authors:'S. Dasgupta; Kapil Kumar Meena; D. Majumdar; Arkopal Goswami', abstract:'Accepted.' },
-       { id:'uaa-2024-breathable', type:'Conference', year:2024, venue:'UAA 2024 (Nashville, USA)', title:'Breathable modes to school: Assessing the air pollution exposure of travel choices for school children in urban environments', authors:'Anusha Sumbhate; Kapil Kumar Meena; Arkopal Kishore Goswami' },
-       { id:'uaa-2024-bicycle', type:'Conference', year:2024, venue:'UAA 2024 (Nashville, USA)', title:'Analysing user behaviour along dedicated bicycle facilities in an urban environment', authors:'P. Mohanty; Kapil Kumar Meena; Arkopal Kishore Goswami' },
-       { id:'iatbr-2024-mumbai', type:'Conference', year:2024, venue:'IATBR 2024 (Vienna, Austria)', title:'Assessing the willingness to bicycle for the first mile to the Mumbai suburban rail', authors:'B. S. Manoj; Kapil Kumar Meena; Hiral Panchal; Gajanand Sharma; Arkopal Goswami' },
-       { id:'wctr-2023-review', type:'Conference', year:2023, venue:'WCTR 2023 (Montréal, Canada)', title:'A review of air pollution exposure impacts on travel behaviour and way forward', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami' },
-       { id:'tpmdc-2022-onroad', type:'Conference', year:2022, venue:'TPMDC 2022 (IIT Bombay)', title:'On-road pollution exposure in multiple transport micro-environments: A case study of Tier-2 and Tier-3 cities in India', authors:'Kapil Kumar Meena; Ranjani Kumar; Arkopal Kishore Goswami' },
+       { id:'ctrg-2023-pub-2025', type:'Conference', year:2025, venue:'CTRG 2023 (SVNIT Surat)', title:'Dynamic route planning for urban green mobility: Development of a web application offering sustainable route options to commuters', authors:'Kapil Kumar Meena; Aditya Kumar Singh; Arkopal Kishore Goswami', tags:['Routing','AQI','Web App', 'DRUM'] },
+       { id:'easts-2025-school', type:'Conference', year:2025, venue:'EASTS', title:'Assessing the air pollution exposure to school children in different modes of transport while commuting to school: A case of Kharagpur, India', authors:'Anusha Sumbhate; Kapil Kumar Meena; Arkopal Kishore Goswami', abstract:'Accepted.', tags:['Exposure', 'School Children', 'Multi-modal'] },
+       { id:'wsstl-2025-tod', type:'Conference', year:2025, venue:'WSSTL 2025 (IISc Bengaluru)', title:'A prioritization framework to identify key attributes of transit-oriented development (TOD) using a multi-criteria decision-making approach: An Indian context', authors:'B. S. Manoj; Kapil Kumar Meena; Arkopal Kishore Goswami', tags:['MCDM','TOD', 'Prioritization'] },
+       { id:'tipce-2025-access', type:'Conference', year:2025, venue:'TIPCE 2025 (IIT Roorkee)', title:'Accessibility assessment of urban public transit to key facilities through spatial analysis – a case study of Delhi', authors:'Rasagna Kodukulla; Kapil Kumar Meena; Gajanand Sharma; Arkopal Kishore Goswami', abstract:'Accepted.', tags:['Accessibility', 'Public Transit', 'Spatial Analysis', 'Delhi'] },
+       { id:'aeee-2025-energies', type:'Conference', year:2025, venue:'AEEE India — Energies', title:'Air pollution exposure among Kolkata’s auto-rickshaw drivers: PM variability, health risks, and predictive modeling', authors:'S. Dasgupta; Kapil Kumar Meena; D. Majumdar; Arkopal Goswami', abstract:'Accepted.', tags:['Exposure', 'Health Risk', 'Predictive Modeling', 'Kolkata'] },
+       { id:'uaa-2024-breathable', type:'Conference', year:2024, venue:'UAA 2024 (Nashville, USA)', title:'Breathable modes to school: Assessing the air pollution exposure of travel choices for school children in urban environments', authors:'Anusha Sumbhate; Kapil Kumar Meena; Arkopal Kishore Goswami', tags:['Exposure', 'School Children', 'Multi-modal'] },
+       { id:'uaa-2024-bicycle', type:'Conference', year:2024, venue:'UAA 2024 (Nashville, USA)', title:'Analysing user behaviour along dedicated bicycle facilities in an urban environment', authors:'P. Mohanty; Kapil Kumar Meena; Arkopal Kishore Goswami', tags:['Cycling','User Behavior'] },
+       { id:'iatbr-2024-mumbai', type:'Conference', year:2024, venue:'IATBR 2024 (Vienna, Austria)', title:'Assessing the willingness to bicycle for the first mile to the Mumbai suburban rail', authors:'B. S. Manoj; Kapil Kumar Meena; Hiral Panchal; Gajanand Sharma; Arkopal Goswami', tags:['Cycling','First/Last Mile', 'Choice Modelling', 'Mumbai'] },
+       { id:'wctr-2023-review', type:'Conference', year:2023, venue:'WCTR 2023 (Montréal, Canada)', title:'A review of air pollution exposure impacts on travel behaviour and way forward', authors:'Kapil Kumar Meena; Arkopal Kishore Goswami', tags:['Review','Exposure','Behaviour'] },
+       { id:'tpmdc-2022-onroad', type:'Conference', year:2022, venue:'TPMDC 2022 (IIT Bombay)', title:'On-road pollution exposure in multiple transport micro-environments: A case study of Tier-2 and Tier-3 cities in India', authors:'Kapil Kumar Meena; Ranjani Kumar; Arkopal Kishore Goswami', tags:['Exposure', 'Multi-modal', 'Tier-2 Cities'] },
 
        // Media
-       { id:'media-2025-hindu-drum', type:'Media', year:2025, venue:'The Hindu', title:"IIT-KGP app helps commuters pick ‘greener’ routes on the road", authors:'Ashmita Gupta', html:'https://www.thehindu.com/sci-tech/energy-and-environment/iit-kgp-app-helps-commuters-pick-greener-routes-on-the-road/article69644558.ece', tags:['Media','DRUM'] },
+       { id:'media-2025-hindu-drum', type:'Media', year:2025, venue:'The Hindu', title:"IIT-KGP app helps commuters pick ‘greener’ routes on the road", authors:'Ashmita Gupta', html:'https://www.thehindu.com/sci-tech/energy-and-environment/iit-kgp-app-helps-commuters-pick-greener-routes-on-the-road/article69644558.ece', tags:['Media','DRUM', 'Web App'] },
      ];
 
      // ===== App Logic =====
@@ -1592,10 +1690,7 @@
        sort: document.getElementById('sortBy'),
        chips: document.getElementById('activeChips'),
        statTotal: document.getElementById('statTotal'),
-       // Removed els.modeBtn, els.sun, els.moon, els.export as they don't exist in index.html
      };
-
-     // Theme logic removed - handled by initThemeToggle()
      
      // Populate filters
      const years = [...new Set(publications.map(p=>p.year))].sort((a,b)=>b-a);
@@ -1610,8 +1705,6 @@
      els.venue.addEventListener('change', e=>{ state.venue=e.target.value; render(); });
      els.sort.addEventListener('change', e=>{ state.sort=e.target.value; render(); });
      window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==els.search){ e.preventDefault(); els.search.focus(); } });
-
-     // Export logic removed - button doesn't exist in index.html
 
      function download(filename, text){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:'text/plain'})); a.download=filename; a.click(); }
      function toCSV(rows){
@@ -1646,7 +1739,7 @@
          switch(state.sort){
            case 'yearAsc': return a.year - b.year;
            case 'titleAsc': return a.title.localeCompare(b.title);
-           default: return b.year - a.year;
+           default: return b.year - a.year; // yearDesc
          }
        });
 
@@ -1683,7 +1776,7 @@
        el.tabIndex=0; el.setAttribute('role','button');
        el.addEventListener('click', ()=>openModal(p)); el.addEventListener('keydown', e=>{ if(e.key==='Enter') openModal(p); });
 
-       const badge = `<span class='ml-auto shrink-0 rounded-lg ${p.type==='Journal'?'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300':(p.type==='Conference'?'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300':'bg-gray-50 text-gray-700 dark:bg-gray-900/30 dark:text-gray-300')} px-2 py-0.5 text-xs'>${p.type}</span>`;
+       const badge = `<span class='ml-auto shrink-0 rounded-lg ${p.type==='Journal'?'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300':(p.type==='Conference'?'bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300':'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300')} px-2 py-0.5 text-xs font-medium'>${p.type}</span>`;
        const venue = `<span class='font-medium'>${escapeHtml(p.venue||'')}</span>`;
        const actions = [
          p.html && `<a href='${p.html}' target='_blank' class='btn'>HTML</a>`,
@@ -1745,8 +1838,6 @@
      // Enhance .btn links (prevent card click)
      document.addEventListener('click', (e)=>{ const a=e.target.closest('a.btn'); if(!a) return; e.stopPropagation(); });
 
-     // Style logic removed - moved to <style> tag
-
      // Init
      render();
      
@@ -1759,15 +1850,13 @@
       initSmoothScrolling();
       initScrollEffects();
       initScrollAnimations();
-      // initPublicationFilters(); // Removed, new logic runs automatically
-      // initModalSystem(); // Removed, new logic runs automatically
+      initProjectModalSystem(); // For project modals
       initCounterAnimations();
       initCursorFollower();
-      // initFormHandler(); // Form is removed
       initParticles();
       initLoadingScreen();
       
-      // New publication logic is already running (e.g., render())
+      // New publication logic is already running (e.fs., render())
     });
   </script>
 </body>
