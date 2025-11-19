@@ -98,3 +98,18 @@ flowchart TD
     style G fill:#000,stroke:#fff,stroke-width:2px
     style H fill:#000,stroke:#ffa500,stroke-width:1px
     style I fill:#00ff7f,stroke:#008000,stroke-width:2px,color:#000
+
+
+```
+## 📁 Project Structure
+
+- **index.html** — Main website page  
+- **styles.css** — Site-wide styling (colors, layout, fonts)  
+- **kp_cv_nov.pdf** — Downloadable CV  
+- **MobilityAI1_Cover.png** — Cover image  
+- **kp_1.png** — Profile / branding image  
+- **LICENSE** — MIT license  
+
+---
+
+⭐ If you like this portfolio, give the repository a star!
